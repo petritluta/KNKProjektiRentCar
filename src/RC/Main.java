@@ -1,23 +1,33 @@
 package RC;
 
+import RC.Utils.AppConfig;
+import RC.Utils.DbHelper;
+import RC.models.LangEnum;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+
+//        primaryStage.setTitle("Hello World");
+//        primaryStage.setScene(new Scene(new Button("OK")));
+//        primaryStage.show();
     }
 
 
     public static void main(String[] args) {
-        launch(args);
+        try {
+            DbHelper.getConnection();
+            System.out.println("Koneksioni me DB u krye me sukses");
+        }catch(Exception ex){
+            System.out.println("Deshtoi koneksioni me DB");
+        }
+//        launch(args);
     }
 }
