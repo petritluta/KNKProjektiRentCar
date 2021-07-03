@@ -1,7 +1,6 @@
-package RC.Utils;
+package Utils;
 
-import RC.models.LangEnum;
-
+import models.LangEnum;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URI;

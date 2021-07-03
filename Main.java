@@ -1,13 +1,15 @@
 
-import RC.Utils.AppConfig;
-import RC.Utils.DbHelper;
-import RC.models.LangEnum;
+import Utils.AppConfig;
+import Utils.DbHelper;
+import models.LangEnum;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+
+import java.util.Properties;
 
 public class Main extends Application {
 

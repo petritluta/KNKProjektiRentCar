@@ -1,4 +1,4 @@
-package RC.models;
+package models;
 
 public enum LangEnum {
     EN, AL
