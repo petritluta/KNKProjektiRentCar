@@ -1,4 +1,3 @@
-package RC;
 
 import RC.Utils.AppConfig;
 import RC.Utils.DbHelper;
