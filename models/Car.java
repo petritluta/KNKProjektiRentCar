@@ -1,8 +1,4 @@
 package models;
-
-
-public class Car {
-
 import java.util.Date;
 
 public class Car {
