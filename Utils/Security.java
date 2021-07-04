@@ -15,7 +15,6 @@ public class Security {
         StringBuilder str=new StringBuilder();
         for (int i = 0; i < saltByte.length; i++) {
             str.append(Integer.toString((saltByte[i] & 0xff) + 0x100, 16).substring(1));
-
         }
         return str.toString();
     }

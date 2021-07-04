@@ -10,6 +10,20 @@ public class User {
     private String salt;
     private boolean is_admin;
 
+    public User(String email,String password)
+    {
+        this.email=email;
+        this.password=password;
+    }
+
+    public User(String first_name,String last_name,String email,String password)
+    {
+        this.first_name=first_name;
+        this.last_name=last_name;
+        this.email=email;
+        this.password=password;
+    }
+
 
     public User(int id,String first_name,String last_name,String email,String password,String salt,boolean is_admin)
     {
