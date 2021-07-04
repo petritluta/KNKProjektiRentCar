@@ -1,5 +1,28 @@
 package models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Type {
-    Sedan,SUV,Cabriolet,SportsCar,Estate,Van,SmallCar
+    Sedan(1),SUV(2),Cabriolet(3),SportsCar(4),Estate(5),Van(6),SmallCar(7);
+    private int value;
+    private static Map map = new HashMap<>();
+
+    private Type(int value) {
+        this.value = value;
+    }
+
+    static {
+        for (Type pageType : Type.values()) {
+            map.put(pageType.value, pageType);
+        }
+    }
+
+    public static Type valueOf(int pageType) {
+        return (Type) map.get(pageType);
+    }
+
+    public int getValue() {
+        return value;
+    }
 }
