@@ -1,6 +1,7 @@
 
 import Utils.AppConfig;
 import Utils.DbHelper;
+import Utils.Security;
 import models.LangEnum;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,6 @@ public class Main extends Application {
     public static void main(String[] args) throws Exception {
         try {
             DbHelper.getConnection();
-            System.out.println("Koneksioni me DB u krye me sukses");
 
         }catch(Exception ex){
             System.out.println("Deshtoi koneksioni me DB");
