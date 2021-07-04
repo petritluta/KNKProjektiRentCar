@@ -14,10 +14,11 @@ public class Car {
         private Type type;
         private int seat_num;
         private int door_num;
-    private Date inserted_at;
-    private Date updated_at;
+        private Date inserted_at;
+        private Date updated_at;
+        private String car_img;
 
-        public Car(  int id,String publisher, int manufacture, String model, double price_per_day, double avg_fuel_km, Transmission transmission, double speed_limit, Type type, int seat_num, int door_num,Date inserted_at, Date updated_at) {
+        public Car(  int id,String publisher, int manufacture, String model, double price_per_day, double avg_fuel_km, Transmission transmission, double speed_limit, Type type, int seat_num, int door_num,Date inserted_at, Date updated_at,String car_img) {
             this.id=id;
             this.publisher=publisher;
             this.manufacture=manufacture;
@@ -29,10 +30,10 @@ public class Car {
             this.type=type;
             this.seat_num=seat_num;
             this.door_num=door_num;
-
+            this.car_img=car_img;
         }
         public Car() {
-            this(-1,"",0,"",0,0,Transmission.Auto,0,Type.SUV,0,0,new Date(), new Date());
+            this(-1,"",0,"",0,0,Transmission.Auto,0,Type.SUV,0,0,new Date(), new Date(),"");
         }
         public int getId() {
             return id;
@@ -127,5 +128,13 @@ public class Car {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getCar_img() {
+        return car_img;
+    }
+
+    public void setCar_img(String car_img) {
+        this.car_img = car_img;
     }
 }
