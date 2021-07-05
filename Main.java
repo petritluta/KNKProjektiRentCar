@@ -21,15 +21,11 @@ import java.awt.event.MouseEvent;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-
-        primaryStage.setTitle("Hello World");
-        HBox box=new HBox();
-
-        primaryStage.setScene(new Scene(box,500,500));
-
-
-        primaryStage.show();
+    public void start(Stage stage) throws Exception {
+        Parent parent= FXMLLoader.load(getClass().getResource("views/LoginView.fxml"));
+        Scene scene=new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
