@@ -1,0 +1,34 @@
+.login-bg {
+   -fx-background-color: linear-gradient(to top, #00ace6, #ffffff);
+}
+.admin {
+    -fx-text-fill: #FFF;
+    -fx-font-weight: 700;
+}
+.btn-login{
+    -fx-background-color: #0086b3;
+    -fx-text-fill: #FFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8px;
+}
+.b1-status{
+    -fx-background-color: #0086b3;
+    -fx-text-fill: #fff;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 8px;
+    -fx-font-size: 15px;
+}
+.b1-user{
+    -fx-text-fill: black;
+    -fx-alignment: CENTER;
+    -fx-font-size: 15px;
+    -fx-font-weight:700;
+}
+/*use tab pane as navigator*/
+.tab-pane{
+    -fx-tab-max-height: 0px;
+}
+.tab-pane .tab-header-area{
+    visibility: hidden;
+}
