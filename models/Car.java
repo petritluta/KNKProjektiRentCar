@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class Car {
         private int id;
-        private String publisher;
+        private int publisher;
         private int manufacture;
         private String model;
         private double price_per_day;
@@ -17,7 +17,10 @@ public class Car {
         private Date updated_at;
         private String car_img;
 
-        public Car(  int id,String publisher, int manufacture, String model, double price_per_day, double avg_fuel_km, Transmission transmission, double speed_limit, Type type, int seat_num, int door_num,Date inserted_at, Date updated_at,String car_img) {
+
+
+        public Car(  int id,int publisher, int manufacture, String model, double price_per_day, double avg_fuel_km, Transmission transmission, double speed_limit, Type type, int seat_num, int door_num,Date inserted_at, Date updated_at) {
+
             this.id=id;
             this.publisher=publisher;
             this.manufacture=manufacture;
@@ -32,13 +35,15 @@ public class Car {
             this.car_img=car_img;
         }
         public Car() {
-            this(-1,"",0,"",0,0,Transmission.Auto,0,Type.SUV,0,0,new Date(), new Date(),"");
+
+            this(-1,1,0,"",0,0,Transmission.Auto,0,Type.SUV,0,0,new Date(), new Date());
+
         }
         public int getId() {
             return id;
         }
 
-        public String getPublisher() {
+        public int getPublisher() {
             return publisher;
         }
 
