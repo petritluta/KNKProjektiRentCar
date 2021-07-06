@@ -59,9 +59,9 @@ public class CarRepo {
 
     public static Car create(Car model) throws Exception {
         Connection conn = DbHelper.getConnection();
-        String query = "INSERT INTO car (publisher,manufacture,model,price_per_day,avg_fuel_km,transmission,speed_limit,type,seat_num,door_num,inserted_at,updated_at) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO car (publisher,manufacture,model,price_per_day,avg_fuel_km,transmission,speed_limit,type,seat_num,door_num,inserted_at,updated_at, car_img) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setString(1, model.getPublisher());
+        stmt.setInt(1, model.getPublisher());
         stmt.setInt(2, model.getManufacture());
         stmt.setString(3, model.getModel());
         stmt.setDouble(4, model.getPrice_per_day());
@@ -73,6 +73,7 @@ public class CarRepo {
         stmt.setInt(10, model.getDoor_num());
         stmt.setTimestamp(11, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
         stmt.setTimestamp(12, java.sql.Timestamp.valueOf(DateHelper.toSqlFormat(model.getUpdated_at())));
+        stmt.setString(13,model.getCar_img());
 
         if (stmt.executeUpdate() != 1)
             throw new Exception("ERR_NO_ROW_CHANGE");
@@ -84,14 +85,22 @@ public class CarRepo {
 
     public static Car update(Car model) throws Exception {
         Connection conn = DbHelper.getConnection();
-        String query = "UPDATE products SET title = ?, description = ?, image = ?, price = ?, qty = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?";
+        String query = "UPDATE Car SET publisher = ?, maunfacture = ?, model = ?, price_per_day = ?, avg_fuel_km = ?, transmission = ?, speed_limit = ?, type = ?, seat_num = ?, door_num = ?, inserted_at = ?, updatedAt = CURRENT_TIMESTAMP, car_img = ? WHERE id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setString(1, model.getTitle());
-        stmt.setString(2, model.getDescription());
-        stmt.setString(3, model.getImage());
-        stmt.setDouble(4, model.getPrice());
-        stmt.setDouble(5, model.getQty());
-        stmt.setInt(6, model.getId());
+        stmt.setInt(1, model.getPublisher());
+        stmt.setInt(2, model.getManufacture());
+        stmt.setString(3, model.getModel());
+        stmt.setDouble(4, model.getPrice_per_day());
+        stmt.setDouble(5, model.getAvg_fuel_km());
+        stmt.setInt(6, model.getTransmission().getValue());
+        stmt.setDouble(7, model.getSpeed_limit());
+        stmt.setInt(8, model.getType().getValue());
+        stmt.setInt(9, model.getSeat_num());
+        stmt.setInt(10, model.getDoor_num());
+        stmt.setTimestamp(11, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+        stmt.setTimestamp(12, java.sql.Timestamp.valueOf(DateHelper.toSqlFormat(model.getUpdated_at())));
+        stmt.setString(13,model.getCar_img());
+        stmt.setInt(14, model.getId());
 
         if (stmt.executeUpdate() != 1)
             throw new Exception("ERR_NO_ROW_CHANGE");
@@ -100,7 +109,7 @@ public class CarRepo {
     }
 
     public static boolean remove(int id) throws Exception {
-        String query = "DELETE FROM products WHERE id = ?";
+        String query = "DELETE FROM car WHERE id = ?";
         PreparedStatement stmt = DbHelper.getConnection().prepareStatement(query);
         stmt.setInt(1, id);
         return stmt.executeUpdate() == 1;
@@ -121,7 +130,4 @@ public class CarRepo {
         );
     }
 
-    public static EnumToString(Enum enum){
-
-    }
 }
