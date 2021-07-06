@@ -1,16 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.LoginView"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
-
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" stylesheets="@../resources/styles/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginViewController">
+    <left>
+        <AnchorPane prefHeight="450.0" prefWidth="230.0" style="-fx-border-radius: 100;" styleClass="login-bg" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="40.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../resources/images/circle-cropped.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane prefHeight="420.0" prefWidth="370.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="175.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../resources/images/user.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="36.0" layoutY="253.0" text="Password" textFill="#1eabf2">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernanme" layoutX="114.0" layoutY="180.0" prefHeight="36.0" prefWidth="195.0" promptText="Type username here" />
+                <Label layoutX="29.0" layoutY="188.0" text="Username" textFill="#1eabf2">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Label>
+                <Button fx:id="login" layoutX="119.0" layoutY="304.0" mnemonicParsing="false" onAction="#loginclicked" prefHeight="30.0" prefWidth="80.0" styleClass="btn-login" text="Login" />
+                <Label layoutX="130.0" layoutY="349.0" onMouseClicked="#createaccountclicked" text="New here? Create account" textFill="#1eabf2">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Button fx:id="cancel" layoutX="217.0" layoutY="304.0" mnemonicParsing="false" onAction="#cancelclicked" prefHeight="30.0" prefWidth="80.0" styleClass="btn-login" text="Cancel" />
+                <PasswordField fx:id="password" layoutX="114.0" layoutY="245.0" prefHeight="36.0" prefWidth="195.0" promptText="Type password here" />
+            </children>
+            <cursor>
+                <Cursor fx:constant="DEFAULT" />
+            </cursor>
+        </AnchorPane>
+    </center>
+</BorderPane>
