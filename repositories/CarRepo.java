@@ -4,6 +4,8 @@ package repositories;
 import Utils.DbHelper;
 import Utils.DateHelper;
 import models.Car;
+import models.Transmission;
+import models.Type;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -117,17 +119,26 @@ public class CarRepo {
 
     private static Car parseRes(ResultSet res) throws Exception {
         int id = res.getInt("id");
-        String title = res.getString("title");
-        String description = res.getString("description");
-        String image = res.getString("image");
-        double price = res.getDouble("price");
-        double qty = res.getDouble("qty");
-        Date createdAt = DateHelper.fromSql(res.getString("createdAt"));
-        Date updatedAt = DateHelper.fromSql(res.getString("updatedAt"));
+        int publisher=res.getInt("publisher");
+        int manufacture=res.getInt("manufacture");
+        String model=res.getString("model");
+        double price_per_day=res.getDouble("price_per_day");
+        double avg_fuel_km=res.getDouble("avg_fuel_km");
+        double speed_limit=res.getDouble("speed_limit");
+        int seat_num=res.getInt("seat_num");
+        int door_num=res.getInt("door_num");
+        String car_img=res.getString("car_img");
+        Date inserted_at = DateHelper.fromSql(res.getString("inserted_at"));
+        Date updated_at = DateHelper.fromSql(res.getString("updated_at"));
+
+         Transmission transmission;
+         Type type;
+
+
+
 
         return new Car(
-                id, title, description, image, price, qty, createdAt, updatedAt
-        );
+                id,  publisher, manufacture, model, price_per_day, avg_fuel_km, transmission, speed_limit, type, seat_num, door_num, inserted_at, updated_at, car_img);
     }
 
 }
