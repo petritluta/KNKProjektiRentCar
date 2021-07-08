@@ -54,11 +54,11 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Insert">
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#onInsertProductClick" text="Product">
+                                <MenuItem mnemonicParsing="false" onAction="#onInsertCarClick" text="Car">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
-                                <MenuItem fx:id="userMenuItem" mnemonicParsing="false" onAction="#onInsertUserClick" text="User">
+                                <MenuItem fx:id="userMenuItem" mnemonicParsing="false" onAction="#onInsertBuyerClick" text="Buyer">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
@@ -66,7 +66,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#onAboutClick" text="About">
+                                <MenuItem mnemonicParsing="false" onAction="#onHelpClick" text="Help">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
@@ -82,12 +82,12 @@
             <children>
                 <VBox prefHeight="493.0" prefWidth="130.0" spacing="5.0">
                     <children>
-                        <Button fx:id="navProductsButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onProductsNavClick" style="-fx-background-color: #027399;" styleClass="nav-link" text="Cars">
+                        <Button fx:id="navProductsButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onCarsNavClick" style="-fx-background-color: #027399;" styleClass="nav-link" text="Cars">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>
                         </Button>
-                        <Button fx:id="navUsersButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onUsersNavClick" style="-fx-background-color: #027399;" styleClass="nav-link" text="Buyers">
+                        <Button fx:id="navUsersButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onBuyersNavClick" style="-fx-background-color: #027399;" styleClass="nav-link" text="Buyers">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>
