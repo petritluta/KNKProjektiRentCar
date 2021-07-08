@@ -118,4 +118,11 @@ public class UserRepo {
         return new User(id,first_name,last_name,email,password,salt,is_admin);
     }
 
+    public static int count() throws Exception {
+        Connection conn = DbHelper.getConnection();
+        ResultSet res = conn.createStatement().executeQuery("SELECT COUNT(*) FROM users");
+        res.next();
+        return res.getInt(1);
+    }
+
 }
