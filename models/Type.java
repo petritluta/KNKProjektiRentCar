@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Type {
-    Sedan(1),SUV(2),Cabriolet(3),SportsCar(4),Estate(5),Van(6),SmallCar(7);
+    Sedan(1),SUV(2),Cabriolet(3),SportsCar(4);
     private int value;
     private static Map map = new HashMap<>();
 

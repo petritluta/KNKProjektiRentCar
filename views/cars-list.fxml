@@ -12,10 +12,10 @@
     <children>
         <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #99bbc7;" VBox.vgrow="ALWAYS">
          <content>
-            <VBox minHeight="300.0" minWidth="200.0" />
+            <VBox fx:id="carsPane" minHeight="300.0" minWidth="200.0" />
          </content>
         </ScrollPane>
-        <HBox fx:id="paginationPane" alignment="CENTER" spacing="10.0" style="-fx-background-color: #99bbc7;" styleClass="pagination-list">
+        <HBox fx:id="btnPane" alignment="CENTER" spacing="10.0" style="-fx-background-color: #99bbc7;" styleClass="pagination-list">
             <children>
                 <Button blendMode="MULTIPLY" mnemonicParsing="false" text="&lt;">
                     <font>

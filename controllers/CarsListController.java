@@ -1,5 +1,7 @@
 package controllers;
 
+import components.CarCardComponent;
+import components.PageBtnComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.FlowPane;
@@ -8,6 +10,7 @@ import javafx.scene.layout.Pane;
 //import components.ErrorPopupComponent;
 //import components.PaginationComponent;
 //import components.UserCardComponent;
+import javafx.scene.layout.VBox;
 import models.User;
 //import repositories.UserRepository;
 import java.net.URL;
@@ -17,12 +20,12 @@ import java.util.ResourceBundle;
 public class CarsListController extends ChildController {
     private final int PAGE_SIZE = 10;
 
-//    private PaginationComponent paginationComponent;
+    private PageBtnComponent paginationComponent;
 
     @FXML
-    private FlowPane usersPane;
+    private VBox carsPane;
     @FXML
-    private HBox paginationPane;
+    private HBox btnPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,7 +40,8 @@ public class CarsListController extends ChildController {
 //                }
 //            });
 //
-//            showUsers(0);
+            System.out.println("erdhh");
+            showUsers(10);
         } catch (Exception e) {
 //            ErrorPopupComponent.show(e);
         }
@@ -47,15 +51,24 @@ public class CarsListController extends ChildController {
 //        return UserRepository.count();
 //    }
 //
-//    private void showUsers(int page) throws Exception {
-//        usersPane.getChildren().clear();
+    private void showUsers(int page) throws Exception {
+        carsPane.getChildren().clear();
+        System.out.println("Mrena o ");
 //        List<User> users = UserRepository.getAll(PAGE_SIZE, page);
-//        UserCardComponent userCard = new UserCardComponent();
+        System.out.println("para");
+        CarCardComponent carCard = new CarCardComponent();
+        System.out.println("pas");
 //        for (User user : users) {
 //            usersPane.getChildren()
 //                    .add(userCard.getContent(user, e -> showUser(user), e -> removeUser(user), e -> changeUserState(user)));
 //        }
-//    }
+//        for (int i = 0; i < 20; i++) {
+//            carsPane.getChildren()
+//                    .add(carCard.getContent(null,null,null));
+//            System.out.println(i);
+//        }
+//        System.out.println("Fundi i loopes");
+    }
 //
 //    private void removeUser(User user) {
 //        try {
