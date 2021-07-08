@@ -26,13 +26,10 @@ public class CarsListController extends ChildController {
     @FXML
     private VBox carsPane;
     @FXML
-//<<<<<<< HEAD
     private HBox paginationPane;
     @FXML
     private Button showAllButton;
-//=======
     private HBox btnPane;
-//>>>>>>> 6ba47af55478d71db104569d197e626bca2c51e6
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

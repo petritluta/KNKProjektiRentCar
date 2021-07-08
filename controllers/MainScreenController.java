@@ -1,5 +1,6 @@
 package controllers;
 
+import Utils.AppConfig;
 import Utils.DateHelper;
 import Utils.SessionManager;
 import javafx.event.ActionEvent;
@@ -21,12 +22,10 @@ import javafx.stage.Stage;
 //import components.AboutComponent;
 //import components.ErrorPopupComponent;
 import models.LangEnum;
-//import models.Product;
 import models.User;
-//import models.UserRole;
-//import utils.AppConfig;
-//import utils.DateHelper;
-//import utils.SessionManager;
+import Utils.AppConfig;
+import Utils.DateHelper;
+import Utils.SessionManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,6 +58,10 @@ public class MainScreenController extends BaseController {
     private CheckMenuItem alCheckMenuItem;
     @FXML
     private MenuItem userMenuItem;
+    @FXML
+    private CheckMenuItem enMenuItem;
+    @FXML
+    private CheckMenuItem alMenuItem;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,10 +87,11 @@ public class MainScreenController extends BaseController {
         setView(view, pane, controller);
     }
 
-
     public void setView(String view, Parent node, ChildController controller) throws Exception {
         childController = controller;
         controller.setParentController(this);
+        ResourceBundle langBundle = getLangBundle();
+        this.childController.loadLangTexts(langBundle);
         contentPage.getChildren().clear();
         contentPage.getChildren().add(node);
         VBox.setVgrow(node, Priority.ALWAYS);
@@ -127,7 +131,34 @@ public class MainScreenController extends BaseController {
         }
     }
 
-        @Override
+    @FXML
+    public void onAlMenuItemClick(ActionEvent ev) {
+        enMenuItem.setSelected(false);
+        alMenuItem.setSelected(true);
+        updateLanguage();
+    }
+
+    @FXML
+    public void onEnMenuItemClick(ActionEvent ev) {
+        enMenuItem.setSelected(true);
+        alMenuItem.setSelected(false);
+        updateLanguage();
+    }
+
+    private void updateLanguage() {
+        try {
+            LangEnum lang = enMenuItem.isSelected() ? LangEnum.EN : LangEnum.AL;
+            AppConfig conf = AppConfig.get();
+            conf.setLanguage(lang);
+            ResourceBundle bundle = getLangBundle();
+            loadLangTexts(bundle);
+
+        } catch (Exception ex) {
+            //ErrorPopupComponent.show(ex);
+        }
+    }
+
+    @Override
     public void loadLangTexts(ResourceBundle langBundle) {
         String navCarsTxt = langBundle.getString("main_nav_cars");
         String navEmployersTxt = langBundle.getString("main_nav_employers");
@@ -141,6 +172,9 @@ public class MainScreenController extends BaseController {
         navCarsButton.setText(navCarsTxt);
         navEmployersButton.setText(navEmployersTxt);
         navLogoutButton.setText(navLogoutTxt);
+
+        if (childController != null)
+            childController.loadLangTexts(langBundle);
 
         switch (activeView) {
             case CARS_DETAILS_VIEW:
@@ -156,8 +190,5 @@ public class MainScreenController extends BaseController {
                 sectionLabel.setText(langBundle.getString("main_nav_section_employers_list"));
                 break;
         }
-
-        if (childController != null)
-            childController.loadLangTexts(langBundle);
     }
 }

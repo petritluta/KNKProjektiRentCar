@@ -103,8 +103,8 @@
                     <children>
                         <SplitMenuButton mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" text="Language" VBox.vgrow="ALWAYS">
                             <items>
-                                <CheckMenuItem fx:id="enCheckMenuItem" mnemonicParsing="false" text="English" />
-                                <CheckMenuItem fx:id="alCheckMenuItem" mnemonicParsing="false" text="Shqip" />
+                                <CheckMenuItem fx:id="enCheckMenuItem" mnemonicParsing="false" onAction="#onEnMenuItemClick" text="English" />
+                                <CheckMenuItem fx:id="alCheckMenuItem" mnemonicParsing="false" onAction="#onAlMenuItemClick" text="Shqip" />
                             </items>
                             <VBox.margin>
                                 <Insets />

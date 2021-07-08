@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class LoginViewController implements  Initializable{
+public class LoginViewController extends BaseController{
     @FXML
     private TextField usernanme;
     @FXML
@@ -62,6 +62,16 @@ public class LoginViewController implements  Initializable{
         primaryStage.show();
     }
 
-
+    @Override
+    public void loadLangTexts(ResourceBundle langBundle) {
+        usernanme.setPromptText(langBundle.getString("login_email"));
+        password.setPromptText(langBundle.getString("login_password"));
+//        try {
+//            String buttonText = langBundle.getString(hasUsers() ?
+//                    "login_button_login" : "login_button_register");
+//        } catch (Exception ex) {
+//            ErrorPopupComponent.show(ex);
+//        }
+    }
 
 }
