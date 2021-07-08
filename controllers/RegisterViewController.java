@@ -78,6 +78,24 @@ public class RegisterViewController implements Initializable {
             alert.setContentText("Invalid credentials!");
             alert.showAndWait();
         }
+
+        try {
+
+            String emailF = userfield.getText();
+            String passwordF = passwordfield.getText();
+            String salt = Security.generateSalt();
+            String hashedPwd = Security.hashPassword(passwordF,salt);
+            User user = new User(emailF,passwordF);
+
+            //user.setFirst_name(firstName);
+            //user.setLast_name(lastName);
+            user.setPassword(hashedPwd);
+            user.setSalt(salt);
+            user = UserRepo.create(user);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static boolean is_Valid_Password(String password) {
