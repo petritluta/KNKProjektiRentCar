@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="880.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="880.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainScreenController">
     <top>
         <VBox alignment="TOP_CENTER" style="-fx-background-color: #99bbc7;" styleClass="navbar" BorderPane.alignment="CENTER">
             <children>
@@ -42,11 +42,11 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
-                                <MenuItem mnemonicParsing="false"  text="Logout">
+                                <MenuItem mnemonicParsing="false" text="Logout">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
-                                <MenuItem mnemonicParsing="false"  text="Exit">
+                                <MenuItem mnemonicParsing="false" text="Exit">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
@@ -54,11 +54,11 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Insert">
                             <items>
-                                <MenuItem mnemonicParsing="false"  text="Car">
+                                <MenuItem mnemonicParsing="false" text="Car">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
-                                <MenuItem fx:id="userMenuItem" mnemonicParsing="false"  text="Buyer">
+                                <MenuItem fx:id="userMenuItem" mnemonicParsing="false" text="Buyer">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
@@ -66,7 +66,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
                             <items>
-                                <MenuItem mnemonicParsing="false"  text="Help">
+                                <MenuItem mnemonicParsing="false" text="Help">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
@@ -82,17 +82,17 @@
             <children>
                 <VBox prefHeight="493.0" prefWidth="130.0" spacing="5.0">
                     <children>
-                        <Button fx:id="navProductsButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false"  style="-fx-background-color: #027399;" styleClass="nav-link" text="Cars">
+                        <Button fx:id="carsButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onCarsBtnClick" style="-fx-background-color: #027399;" styleClass="nav-link" text="Cars">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>
                         </Button>
-                        <Button fx:id="navUsersButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false"  style="-fx-background-color: #027399;" styleClass="nav-link" text="Buyers">
+                        <Button maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" style="-fx-background-color: #027399;" styleClass="nav-link" text="Buyers">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>
                         </Button>
-                        <Button fx:id="navLogoutButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false"  style="-fx-background-color: #027399;" styleClass="nav-link" text="Logout">
+                        <Button maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" style="-fx-background-color: #027399;" styleClass="nav-link" text="Logout">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>
@@ -103,7 +103,7 @@
                     <children>
                         <SplitMenuButton mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" text="Language" VBox.vgrow="ALWAYS">
                             <items>
-                                <CheckMenuItem fx:id="enCheckMenuItem" mnemonicParsing="false"  text="English" />
+                                <CheckMenuItem fx:id="enCheckMenuItem" mnemonicParsing="false" text="English" />
                                 <CheckMenuItem fx:id="alCheckMenuItem" mnemonicParsing="false" text="Shqip" />
                             </items>
                             <VBox.margin>

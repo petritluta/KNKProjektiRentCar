@@ -1,7 +1,7 @@
 package controllers;
 
 import javafx.fxml.Initializable;
-import utils.SessionManager;
+import Utils.Session;
 
 import java.net.URL;
 import java.util.Locale;
@@ -11,13 +11,13 @@ public abstract class BaseController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadLangTexts(getLangBundle());
+//        loadLangTexts(getLangBundle());
     }
 
-    public ResourceBundle getLangBundle() {
-        Locale locale = SessionManager.getLocale();
-        return ResourceBundle.getBundle("resources.bundles.LangBundle", locale);
-    }
+//    public ResourceBundle getLangBundle() {
+//        Locale locale = Session.getLocale();
+//        return ResourceBundle.getBundle("resources.bundles.LangBundle", locale);
+//    }
 
     public abstract void loadLangTexts(ResourceBundle langBundle);
 }

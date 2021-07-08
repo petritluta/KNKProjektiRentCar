@@ -10,8 +10,8 @@ public abstract class ChildController extends BaseController {
         this.parentController = parentController;
     }
 
-    @Override
-    public void loadLangTexts(ResourceBundle langBundle) {
-
-    }
+//    @Override
+//    public void loadLangTexts(ResourceBundle langBundle) {
+//
+//    }
 }
