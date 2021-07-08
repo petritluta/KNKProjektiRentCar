@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -23,6 +24,8 @@ public class CarsListController extends ChildController {
     private FlowPane usersPane;
     @FXML
     private HBox paginationPane;
+    @FXML
+    private Button showAllButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -92,6 +95,7 @@ public class CarsListController extends ChildController {
 
     @Override
     public void loadLangTexts(ResourceBundle langBundle) {
-
+        super.loadLangTexts(langBundle);
+        this.showAllButton.setText(langBundle.getString("cars_list_show_all_button"));
     }
 }

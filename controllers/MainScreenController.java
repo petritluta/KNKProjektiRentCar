@@ -1,5 +1,7 @@
 package controllers;
 
+import Utils.DateHelper;
+import Utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,19 +36,15 @@ public class MainScreenController extends BaseController {
     public static final String CARS_LIST_VIEW = "cars-list";
     public static final String BUYERS_DETAILS_VIEW = "buyers-details";
     public static final String BUYERS_LIST_VIEW = "buyers-list";
-    private static final String VIEW_PATH = "../views";
+    public static final String VIEW_PATH = "../views";
 
     private BaseController childController;
     private String activeView = "";
 
     @FXML
-    private Label navLabel;
-
+    private Button navCarsButton;
     @FXML
-    private Button carsButton;
-
-    @FXML
-    private Button navUsersButton;
+    private Button navEmployersButton;
     @FXML
     private Button navLogoutButton;
     @FXML
@@ -112,7 +110,7 @@ public class MainScreenController extends BaseController {
         }
 
         activeView = view;
-//        loadLangTexts(getLangBundle());
+        loadLangTexts(getLangBundle());
     }
 
     private String viewPath(String view) {
@@ -128,162 +126,38 @@ public class MainScreenController extends BaseController {
             ex.printStackTrace();
         }
     }
-//
-//    @FXML
-//    public void onBuyersNavClick(ActionEvent ev) {
-//        try {
-//            this.setView(BUYERS_LIST_VIEW);
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//        }
-//    }
-//
-//    @FXML
-//    public void onLogoutNavClick(ActionEvent ev) {
-//        try {
-//            Parent parent = FXMLLoader.load(getClass().getResource(viewPath("LoginView")));
-//            Scene scene = new Scene(parent);
-//
-//            Stage primaryStage = (Stage) ((Node) ev.getSource()).getScene().getWindow();
-//            primaryStage.setScene(scene);
-//
-//            SessionManager.user = null;
-//            SessionManager.lastLogin = null;
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//        }
-//    }
-//
-//    @FXML
-//    public void onLogoutMenuClick(ActionEvent ev) {
-//        try {
-//            Parent parent = FXMLLoader.load(getClass().getResource(viewPath("LoginView")));
-//            Scene scene = new Scene(parent);
-//
-//            Stage primaryStage = (Stage) statusLabel.getScene().getWindow();
-//            primaryStage.setScene(scene);
-//
-//            SessionManager.user = null;
-//            SessionManager.lastLogin = null;
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//        }
-//    }
-//
-//    @FXML
-//    public void onExitMenuClick(ActionEvent ev) {
-//        try {
-//            Stage primaryStage = (Stage) statusLabel.getScene().getWindow();
-//            primaryStage.close();
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//        }
-//    }
-//
-//    @FXML
-//    public void onInsertCarClick(ActionEvent ev) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(getClass().getResource(viewPath(CARS_DETAILS_VIEW)));
-//            Parent node = loader.load();
-//
-//            CarsDetailsController controller = loader.getController();
-//            controller.setModel(new Product());
-//            controller.setEditable(true);
-//
-//            this.setView(CARS_DETAILS_VIEW, node, controller);
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//        }
-//    }
-//
-//    @FXML
-//    public void onInsertBuyerClick(ActionEvent ev) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(getClass().getResource(viewPath(BUYERS_DETAILS_VIEW)));
-//            Parent node = loader.load();
-//
-//            BuyersDetailsController controller = loader.getController();
-//            controller.setModel(new User());
-//
-//            this.setView(BUYERS_DETAILS_VIEW, node, controller);
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//        }
-//    }
-//
-//    @FXML
-//    public void onHelpClick(ActionEvent ev) {
-//        try { // qekjo duhet me kon HelpComponent
-//            new AboutComponent().showDialog();
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//        }
-//    }
-//
-//    @FXML
-//    private void onChangeLangMenuItemEnClick(ActionEvent event) {
-//        enCheckMenuItem.setSelected(true);
-//        alCheckMenuItem.setSelected(false);
-//        changeUILanguage();
-//    }
-//
-//    @FXML
-//    private void onChangeLangMenuItemAlClick(ActionEvent event) {
-//        enCheckMenuItem.setSelected(false);
-//        alCheckMenuItem.setSelected(true);
-//        changeUILanguage();
-//    }
-//
-//    private void changeUILanguage() {
-//        try {
-//            LangEnum lang = enCheckMenuItem.isSelected() ? LangEnum.EN : LangEnum.AL;
-//            AppConfig.get().setLanguage(lang);
-//
-//            ResourceBundle langBundle = getLangBundle();
-//            loadLangTexts(langBundle);
-//            if (childController != null) childController.loadLangTexts(langBundle);
-//        } catch (Exception e) {
-//            ErrorPopupComponent.show(e);
-//        }
-//    }
-//
-//    @Override
-//    public void loadLangTexts(ResourceBundle langBundle) {
-//        String navLabelTxt = langBundle.getString("main_nav_label");
-//        String navProductsTxt = langBundle.getString("main_nav_products");
-//        String navUsersTxt = langBundle.getString("main_nav_users");
-//        String navLogoutTxt = langBundle.getString("main_nav_logout");
-//        String statusLabelTxt = langBundle.getString("main_status_label");
-//
-//        String user = SessionManager.user.getEmail();
-//        String loginTime = DateHelper.toSqlFormat(SessionManager.lastLogin);
-//
-//        statusLabel.setText(String.format(statusLabelTxt, user, loginTime));
-//        navLabel.setText(navLabelTxt);
-//        navProductsButton.setText(navProductsTxt);
-//        navUsersButton.setText(navUsersTxt);
-//        navLogoutButton.setText(navLogoutTxt);
-//
-//        switch (activeView) {
-//            case CARS_DETAILS_VIEW:
-//                sectionLabel.setText(langBundle.getString("main_nav_section_product_details"));
-//                break;
-//            case CARS_LIST_VIEW:
-//                sectionLabel.setText(langBundle.getString("main_nav_section_product_list"));
-//                break;
-//            case BUYERS_DETAILS_VIEW:
-//                sectionLabel.setText(langBundle.getString("main_nav_section_user_details"));
-//                break;
-//            case BUYERS_LIST_VIEW:
-//                sectionLabel.setText(langBundle.getString("main_nav_section_user_list"));
-//                break;
-//        }
-//
-//        if (childController != null) childController.loadLangTexts(langBundle);
-//    }
-        public void loadLangTexts(ResourceBundle langBundle){
 
+        @Override
+    public void loadLangTexts(ResourceBundle langBundle) {
+        String navCarsTxt = langBundle.getString("main_nav_cars");
+        String navEmployersTxt = langBundle.getString("main_nav_employers");
+        String navLogoutTxt = langBundle.getString("main_nav_logout");
+        String statusLabelTxt = langBundle.getString("main_status_label");
+
+        String employer = SessionManager.employer.getEmail();
+        String loginTime = DateHelper.toSqlFormat(SessionManager.lastLogin);
+        statusLabel.setText(String.format(statusLabelTxt, employer, loginTime));
+
+        navCarsButton.setText(navCarsTxt);
+        navEmployersButton.setText(navEmployersTxt);
+        navLogoutButton.setText(navLogoutTxt);
+
+        switch (activeView) {
+            case CARS_DETAILS_VIEW:
+                sectionLabel.setText(langBundle.getString("main_nav_section_cars_details"));
+                break;
+            case CARS_LIST_VIEW:
+                sectionLabel.setText(langBundle.getString("main_nav_section_cars_list"));
+                break;
+            case BUYERS_DETAILS_VIEW:
+                sectionLabel.setText(langBundle.getString("main_nav_section_employers_details"));
+                break;
+            case BUYERS_LIST_VIEW:
+                sectionLabel.setText(langBundle.getString("main_nav_section_employers_list"));
+                break;
         }
+
+        if (childController != null)
+            childController.loadLangTexts(langBundle);
+    }
 }

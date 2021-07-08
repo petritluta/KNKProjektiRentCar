@@ -47,12 +47,24 @@ public class AppConfig {
     }
 
     public LangEnum getLanguage() {
-        return props.getProperty("lang", "en").equals("en") ? LangEnum.EN : LangEnum.AL;
+        LangEnum lang = props.getProperty("lang", "en").equals("en") ? LangEnum.EN : LangEnum.AL;
+        return lang;
     }
 
     public void setLanguage(LangEnum lang) throws Exception {
         URI confPath = getClass().getResource("../resources/config.properties").toURI();
-        props.setProperty("lang", lang == LangEnum.EN ? "en" : "al");
+        String langStr = lang == LangEnum.EN ? "en" : "al";
+        props.setProperty("lang", langStr);
         props.store(new FileOutputStream(new File(confPath)), "");
     }
+
+//    public LangEnum getLanguage() {
+//        return props.getProperty("lang", "en").equals("en") ? LangEnum.EN : LangEnum.AL;
+//    }
+// qeto Vigani i ka pase te resources a pjesa nalt osht si ne video
+//    public void setLanguage(LangEnum lang) throws Exception {
+//        URI confPath = getClass().getResource("../resources/config.properties").toURI();
+//        props.setProperty("lang", lang == LangEnum.EN ? "en" : "al");
+//        props.store(new FileOutputStream(new File(confPath)), "");
+//    }
 }

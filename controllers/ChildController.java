@@ -1,6 +1,5 @@
 package controllers;
 
-import javafx.fxml.Initializable;
 import java.util.ResourceBundle;
 
 public abstract class ChildController extends BaseController {
@@ -10,8 +9,8 @@ public abstract class ChildController extends BaseController {
         this.parentController = parentController;
     }
 
-//    @Override
-//    public void loadLangTexts(ResourceBundle langBundle) {
-//
-//    }
+    @Override
+    public void loadLangTexts(ResourceBundle langBundle) {
+
+    }
 }
