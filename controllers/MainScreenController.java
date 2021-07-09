@@ -15,9 +15,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 //import components.AboutComponent;
 import components.ErrorPopupComponent;
+import javafx.stage.StageStyle;
 import models.LangEnum;
 import models.User;
 import Utils.AppConfig;
@@ -34,7 +36,6 @@ public class MainScreenController extends BaseController {
     public static final String BUYERS_DETAILS_VIEW = "buyers-details";
     public static final String BUYERS_LIST_VIEW = "buyers-list";
     public static final String VIEW_PATH = "../views";
-
     private ChildController childController = null;
     private String activeView = "";
 
@@ -153,6 +154,22 @@ public class MainScreenController extends BaseController {
         enMenuItem.setSelected(true);
         alMenuItem.setSelected(false);
         updateLanguage();
+    }
+
+    @FXML
+    public void help(ActionEvent ev) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/partials/help.fxml"));
+
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("HELP");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.showAndWait();
     }
 
     private void updateLanguage() {
