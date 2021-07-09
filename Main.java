@@ -45,7 +45,7 @@ public class Main extends Application {
             Connection conn = DbHelper.getConnection();
             System.out.println("U konektu");
             String query = "INSERT INTO car (publisher,manufacture,model,price_per_day,avg_fuel_km,transmission,speed_limit,type,seat_num,door_num,inserted_at,updated_at, car_img) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?)";
-            String imageLocation = "resources/images/cars/";
+            String imageLocation = "resources/images/Cars/";
             for (int i = 0; i < brands.length; i++) {
                 for (int j = 0; j < classification.length; j++) {
                     for (int k = 1; k <= 6; k++) {

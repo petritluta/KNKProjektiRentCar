@@ -13,6 +13,7 @@ import components.ErrorPopupComponent;
 //import components.PaginationComponent;
 //import components.UserCardComponent;
 import javafx.scene.layout.VBox;
+import models.Car;
 import models.User;
 import repositories.CarRepo;
 //import repositories.UserRepository;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CarsListController extends ChildController {
-    private final int PAGE_SIZE = 8;
+    private final int PAGE_SIZE = 6;
 
     private PageBtnComponent paginationComponent;
 
@@ -51,6 +52,7 @@ public class CarsListController extends ChildController {
                 }
             });
 //            System.out.println("erdhh");
+            showCars(0);
         } catch (Exception e) {
             ErrorPopupComponent.show(e);
         }
@@ -62,21 +64,12 @@ public class CarsListController extends ChildController {
 
     private void showCars(int page) throws Exception {
         carsPane.getChildren().clear();
-//        List<User> users = UserRepository.getAll(PAGE_SIZE, page);
-        for (int i = 0; i < page; i++) {
-            Node carCard = new CarCardComponent().getContent(null,null,null);
+        List<Car> cars = CarRepo.getAll(PAGE_SIZE, page);
+        for (Car car : cars) {
+            Node carCard = new CarCardComponent().getContent(car,null,null);
             carsPane.getChildren().add(carCard);
         }
-//        for (User user : users) {
-//            usersPane.getChildren()
-//                    .add(userCard.getContent(user, e -> showUser(user), e -> removeUser(user), e -> changeUserState(user)));
-//        }
-//        for (int i = 0; i < 20; i++) {
-//            carsPane.getChildren()
-//                    .add(carCard.getContent(null,null,null));
-//            System.out.println(i);
-//        }
-//        System.out.println("Fundi i loopes");
+
     }
 //
 //    private void removeUser(User user) {

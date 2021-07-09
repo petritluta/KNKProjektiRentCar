@@ -1,5 +1,6 @@
 package controllers.partials;
 
+import components.ErrorPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -46,17 +47,22 @@ public class CarCardController implements Initializable {
 
     }
     public void setCar(Car car) {
+        try {
         id.setText("Identifier: " + car.getId());
-        model.setText(car.getModel());
-        transmission.setText(car.getTransmission().toString());
-        type.setText(car.getType().toString());
-        seatnum_doornum.setText("door num:"+car.getDoor_num()+"/seat num:"+car.getSeat_num());
+        model.setText("Model: " +car.getModel());
+        transmission.setText("Transmission: "+car.getTransmission());
+        type.setText("Type: " + car.getType());
+        seatnum_doornum.setText("door num: "+car.getDoor_num()+"/seat num:"+car.getSeat_num());
         manufacture.setText("manufacture id:"+car.getManufacture());
-        speedlimit.setText("speed limit:: " + car.getSpeed_limit());
-        avg_fuel_km.setText("Average fuel consumption:"+car.getAvg_fuel_km());
-        price_per_day.setText("Price per day:"+car.getPrice_per_day());
-        Image image=new Image(car.getCar_img());
+        speedlimit.setText("speed limit: " + car.getSpeed_limit());
+        avg_fuel_km.setText("Fuel consumption: "+(int)car.getAvg_fuel_km());
+        price_per_day.setText("Price per day: "+(int)car.getPrice_per_day());
+        Image image=new Image(getClass().getResource("../../"+car.getCar_img()).toURI().toString());
         img.setImage(image);
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
     public void setOnEditAction(EventHandler<ActionEvent> handler) {
         this.editButton.setOnAction(handler);

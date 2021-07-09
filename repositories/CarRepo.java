@@ -19,7 +19,6 @@ public class CarRepo {
         Connection conn = DbHelper.getConnection();
         ResultSet res = conn.createStatement().executeQuery("SELECT COUNT(*) FROM car");
         res.next();
-        System.out.println(res.getInt(1));
         return res.getInt(1);
     }
 
@@ -32,7 +31,7 @@ public class CarRepo {
         stmt.setInt(2, pageSize * page);
         ResultSet res = stmt.executeQuery();
         while (res.next()) {
-//            list.add(parseRes(res));
+            list.add(parseRes(res));
         }
         return list;
     }
@@ -43,6 +42,7 @@ public class CarRepo {
         stmt.setInt(1, id);
 
         ResultSet res = stmt.executeQuery();
+        if (!res.next()) return null;
         if (!res.next()) return null;
         return parseRes(res);
     }
