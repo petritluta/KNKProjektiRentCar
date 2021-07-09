@@ -19,6 +19,7 @@ public class CarRepo {
         Connection conn = DbHelper.getConnection();
         ResultSet res = conn.createStatement().executeQuery("SELECT COUNT(*) FROM car");
         res.next();
+        System.out.println(res.getInt(1));
         return res.getInt(1);
     }
 

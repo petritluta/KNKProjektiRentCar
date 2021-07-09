@@ -4,6 +4,7 @@ import components.CarCardComponent;
 import components.PageBtnComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -13,22 +14,20 @@ import components.ErrorPopupComponent;
 //import components.UserCardComponent;
 import javafx.scene.layout.VBox;
 import models.User;
+import repositories.CarRepo;
 //import repositories.UserRepository;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class CarsListController extends ChildController {
-    private final int PAGE_SIZE = 10;
+    private final int PAGE_SIZE = 8;
 
     private PageBtnComponent paginationComponent;
 
     @FXML
     private VBox carsPane;
     @FXML
-    private HBox paginationPane;
-    @FXML
-    private Button showAllButton;
     private HBox btnPane;
 
     @Override
@@ -43,25 +42,31 @@ public class CarsListController extends ChildController {
 //                    ErrorPopupComponent.show(e);
 //                }
 //            });
-
-            System.out.println("erdhh");
-            showUsers(10);
+            paginationComponent = new PageBtnComponent(carCount(), PAGE_SIZE);
+            paginationComponent.render(btnPane, page -> {
+                try {
+                    showCars(page);
+                }catch (Exception ex){
+                    ErrorPopupComponent.show(ex);
+                }
+            });
+//            System.out.println("erdhh");
         } catch (Exception e) {
             ErrorPopupComponent.show(e);
         }
     }
 
-//    private int userCount() throws Exception {
-//        return UserRepository.count();
-//    }
-//
-    private void showUsers(int page) throws Exception {
+    private int carCount() throws Exception {
+        return CarRepo.count();
+    }
+
+    private void showCars(int page) throws Exception {
         carsPane.getChildren().clear();
-        System.out.println("Mrena o ");
 //        List<User> users = UserRepository.getAll(PAGE_SIZE, page);
-        System.out.println("para");
-        CarCardComponent carCard = new CarCardComponent();
-        System.out.println("pas");
+        for (int i = 0; i < page; i++) {
+            Node carCard = new CarCardComponent().getContent(null,null,null);
+            carsPane.getChildren().add(carCard);
+        }
 //        for (User user : users) {
 //            usersPane.getChildren()
 //                    .add(userCard.getContent(user, e -> showUser(user), e -> removeUser(user), e -> changeUserState(user)));
@@ -109,7 +114,7 @@ public class CarsListController extends ChildController {
 
     @Override
     public void loadLangTexts(ResourceBundle langBundle) {
-        super.loadLangTexts(langBundle);
-        this.showAllButton.setText(langBundle.getString("cars_list_show_all_button"));
+//        super.loadLangTexts(langBundle);
+//        this.showAllButton.setText(langBundle.getString("cars_list_show_all_button"));
     }
 }

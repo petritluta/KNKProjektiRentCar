@@ -15,10 +15,10 @@ public class CarCardComponent {
         loader.setLocation(getClass().getResource("../views/partials/car-card.fxml"));
         Node node = loader.load();
 
-        CarCardController controller = loader.getController();
-       controller.setCar(car);
-       controller.setOnEditAction(editHandler);
-        controller.setOnDeleteAction(deleteHandler);
+//        CarCardController controller = loader.getController();
+//       controller.setCar(car);
+//       controller.setOnEditAction(editHandler);
+//        controller.setOnDeleteAction(deleteHandler);
 
         return node;
     }

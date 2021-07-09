@@ -65,7 +65,7 @@ public class MainScreenController extends BaseController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        super.initialize(location, resources);
+//        super.initialize(location, resources);
 
 //        boolean enSelected = AppConfig.get().getLanguage() == LangEnum.EN;
 //        enCheckMenuItem.setSelected(enSelected);
@@ -114,7 +114,7 @@ public class MainScreenController extends BaseController {
         }
 
         activeView = view;
-        loadLangTexts(getLangBundle());
+//        loadLangTexts(getLangBundle());
     }
 
     private String viewPath(String view) {
@@ -165,13 +165,13 @@ public class MainScreenController extends BaseController {
         String navLogoutTxt = langBundle.getString("main_nav_logout");
         String statusLabelTxt = langBundle.getString("main_status_label");
 
-        String employer = SessionManager.employer.getEmail();
-        String loginTime = DateHelper.toSqlFormat(SessionManager.lastLogin);
-        statusLabel.setText(String.format(statusLabelTxt, employer, loginTime));
-
-        navCarsButton.setText(navCarsTxt);
-        navEmployersButton.setText(navEmployersTxt);
-        navLogoutButton.setText(navLogoutTxt);
+//        String employer = SessionManager.employer.getEmail();
+//        String loginTime = DateHelper.toSqlFormat(SessionManager.lastLogin);
+//        statusLabel.setText(String.format(statusLabelTxt, employer, loginTime));
+//
+//        navCarsButton.setText(navCarsTxt);
+//        navEmployersButton.setText(navEmployersTxt);
+//        navLogoutButton.setText(navLogoutTxt);
 
         if (childController != null)
             childController.loadLangTexts(langBundle);

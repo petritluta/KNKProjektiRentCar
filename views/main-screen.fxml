@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="880.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="880.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainScreenController">
     <top>
         <VBox alignment="TOP_CENTER" style="-fx-background-color: #99bbc7;" styleClass="navbar" BorderPane.alignment="CENTER">
             <children>
@@ -139,9 +138,9 @@
                     </padding>
                 </HBox>
                 <VBox fx:id="contentPage" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                    </padding>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" top="15.0" />
+               </padding>
                 </VBox>
             </children>
         </VBox>
@@ -153,7 +152,4 @@
             </padding>
         </HBox>
     </bottom>
-    <right>
-        <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
-    </right>
 </BorderPane>
