@@ -45,9 +45,9 @@ public class LoginViewController extends BaseController{
                 if(hasUsers()) {
                     user = login(emailF, passwordF);
                 }
-//                else {
-//                    //me qit exception qe me dal te regjistrimi
-//                }
+                else {
+                    //me qit exception qe me dal te regjistrimi
+                }
 
                 if (user == null) throw new Exception("Invalid credentials");
                 SessionManager.employer = user;
