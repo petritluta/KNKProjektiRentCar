@@ -71,16 +71,17 @@ public class CarsListController extends ChildController {
         }
 
     }
-//
-//    private void removeUser(User user) {
-//        try {
-//            UserRepository.remove(user.getId());
-//            showUsers(paginationComponent.getCursor());
-//        } catch (Exception e) {
-//            ErrorPopupComponent.show(e);
-//        }
-//    }
-//
+
+    private void removeCar(Car car) {
+        try {
+            CarRepo.remove(car.getId());
+            System.out.println("aa");
+            showCars(paginationComponent.getCursor());
+        } catch (Exception e) {
+            ErrorPopupComponent.show(e);
+        }
+    }
+
 //    private void showUser(User user) {
 //        try {
 //            FXMLLoader loader = new FXMLLoader();
@@ -91,15 +92,6 @@ public class CarsListController extends ChildController {
 //            controller.setModel(user);
 //
 //            parentController.setView(MainScreenController.BUYERS_DETAILS_VIEW, pane, controller);
-//        } catch (Exception e) {
-//            ErrorPopupComponent.show(e);
-//        }
-//    }
-//
-//    private void changeUserState(User user) {
-//        try {
-//            user.setActive(!user.getActive());
-//            UserRepository.update(user);
 //        } catch (Exception e) {
 //            ErrorPopupComponent.show(e);
 //        }

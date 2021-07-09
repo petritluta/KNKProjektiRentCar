@@ -18,8 +18,8 @@ public class CarCardComponent {
         CarCardController controller = loader.getController();
         controller.setCar(car);
 
-//        controller.setOnEditAction(editHandler);
-//        controller.setOnDeleteAction(deleteHandler);
+        controller.setOnEditAction(editHandler);
+        controller.setOnDeleteAction(deleteHandler);
 
         return node;
     }
