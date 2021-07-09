@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -31,10 +30,7 @@ public class CarsListController extends ChildController {
     private VBox carsPane;
     @FXML
     private HBox btnPane;
-    @FXML
-    ComboBox<String> Brands ;
-    @FXML
-    ComboBox<String> types ;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -70,7 +66,7 @@ public class CarsListController extends ChildController {
         carsPane.getChildren().clear();
         List<Car> cars = CarRepo.getAll(PAGE_SIZE, page);
         for (Car car : cars) {
-            Node carCard = new CarCardComponent().getContent(car,null,null);
+            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car));
             carsPane.getChildren().add(carCard);
         }
 
@@ -85,21 +81,21 @@ public class CarsListController extends ChildController {
             ErrorPopupComponent.show(e);
         }
     }
-//private void showCar(Car car) {
-      //try {
-         //   FXMLLoader loader = new FXMLLoader();
-        //    loader.setLocation(getClass().getResource("../views/cars-details.fxml"));
-//
-      //      Pane pane = loader.load();
-    //        CarsDetailsController controller = loader.getController();
-  //          controller.setModel(car);
-//
-   //         parentController.setView(MainScreenController.CARS_DETAILS_VIEW, pane, controller);
- //       } catch (Exception e) {
-     //       ErrorPopupComponent.show(e);
-   //     }
- //   }
 
+    private void showCar(Car car) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/cars-details.fxml"));
+
+            Pane pane = loader.load();
+            CarsDetailsController controller = loader.getController();
+            controller.setModel(car);
+
+            parentController.setView(MainScreenController.CARS_DETAILS_VIEW, pane, controller);
+        } catch (Exception e) {
+            ErrorPopupComponent.show(e);
+        }
+    }
 
 
     @Override
