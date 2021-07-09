@@ -82,7 +82,7 @@ public class Main extends Application {
     private void exit(Stage stage) {
         Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Exit");
-        alert.setContentText("Are you sure you want to leav ?");
+        alert.setContentText("Are you sure you want to leave?");
         if(alert.showAndWait().get()==ButtonType.OK){
             stage.close();
         }
