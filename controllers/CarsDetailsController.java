@@ -114,7 +114,7 @@
 //        }
 //    }
 //
-//    public void setModel(Product model) {
+//    public void setModel(Car car) {
 //        viewModel = new ProductViewModel(model);
 //
 //        idField.setText(Integer.toString(viewModel.getId()));
