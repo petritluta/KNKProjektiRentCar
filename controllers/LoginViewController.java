@@ -43,7 +43,7 @@ public class LoginViewController extends BaseController{
                 String passwordF = password.getText();
 
                 if(hasUsers()) {
-                    login(emailF, passwordF);
+                    user = login(emailF, passwordF);
                 } else {
                     //me qit exception qe me dal te regjistrimi
                 }
@@ -58,7 +58,7 @@ public class LoginViewController extends BaseController{
 
                 Parent parent = loader.load();
                 MainScreenController controller = loader.getController();
-                controller.setView(MainScreenController.CARS_LIST_VIEW);
+//                controller.setView(MainScreenController.CARS_LIST_VIEW);
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(parent);
@@ -82,7 +82,12 @@ public class LoginViewController extends BaseController{
 
     private User login(String email, String password) throws Exception {
         User user = UserRepo.find(email);
-        if (user == null) return user; //qetu na me qit ni tekst mi than regjistroju
+
+        if (user == null)
+        {
+            System.out.println("Useri su gjet");
+            return user; //qetu na me qit ni tekst mi than regjistroju}
+        }
 
         String hashedPassword = Security.hashPassword(password, user.getSalt());
         if (!user.getPassword().equals(hashedPassword)) return null;
@@ -92,8 +97,13 @@ public class LoginViewController extends BaseController{
 
     @FXML
     private void cancelclicked(ActionEvent event) throws Exception {
+        Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Exit");
+        alert.setContentText("Are you sure you want to leav ?");
+        if(alert.showAndWait().get()==ButtonType.OK){
         Stage stage=(Stage) cancel.getScene().getWindow();
         stage.close();
+        }
     }
 
     @FXML

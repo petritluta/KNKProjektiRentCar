@@ -11,10 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -26,6 +23,8 @@ import models.User;
 import Utils.AppConfig;
 import Utils.DateHelper;
 import Utils.SessionManager;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -180,6 +179,19 @@ public class MainScreenController extends BaseController {
             case BUYERS_LIST_VIEW:
                 sectionLabel.setText(langBundle.getString("main_nav_section_employers_list"));
                 break;
+        }
+    }
+    @FXML
+    public void Logout(ActionEvent event) throws IOException {
+        Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You're about to logout");
+        if(alert.showAndWait().get()==ButtonType.OK){
+            Parent parent = FXMLLoader.load(getClass().getResource("../views/LoginView.fxml"));
+            Scene scene = new Scene(parent);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(scene);
+            primaryStage.show();
         }
     }
 }
