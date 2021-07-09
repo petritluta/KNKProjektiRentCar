@@ -131,7 +131,7 @@
                   <Insets left="18.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="editButton" minWidth="85.0" mnemonicParsing="false" onAction="#setOnEditAction" prefHeight="32.0" prefWidth="85.0" text="Edit" textFill="WHITE">
+            <Button fx:id="editButton" minWidth="85.0" mnemonicParsing="false"  prefHeight="32.0" prefWidth="85.0" text="Edit" textFill="WHITE">
                <HBox.margin>
                   <Insets left="200.0" />
                </HBox.margin>
