@@ -9,11 +9,11 @@
 //import javafx.scene.layout.HBox;
 //import javafx.scene.layout.Pane;
 //import components.ErrorPopupComponent;
-////import components.PaginationComponent;
-////import components.UserCardComponent;
+//import components.PaginationComponent;
+//import components.UserCardComponent;
 //import javafx.scene.layout.VBox;
 //import models.User;
-////import repositories.UserRepository;
+//import repositories.UserRepository;
 //import java.net.URL;
 //import java.util.List;
 //import java.util.ResourceBundle;
@@ -34,15 +34,15 @@
 //    @Override
 //    public void initialize(URL location, ResourceBundle resources) {
 //        try {
-////            super.initialize(location, resources);
-////            paginationComponent = new PaginationComponent(userCount(), PAGE_SIZE);
-////            paginationComponent.render(paginationPane, (page) -> {
-////                try {
-////                    showUsers(page);
-////                } catch (Exception e) {
-////                    ErrorPopupComponent.show(e);
-////                }
-////            });
+//            super.initialize(location, resources);
+//            paginationComponent = new PaginationComponent(userCount(), PAGE_SIZE);
+//            paginationComponent.render(paginationPane, (page) -> {
+//                try {
+//                    showUsers(page);
+//                } catch (Exception e) {
+//                    ErrorPopupComponent.show(e);
+//                }
+//            });
 //
 //            System.out.println("erdhh");
 //            showUsers(10);
