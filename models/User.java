@@ -10,6 +10,7 @@ public class User {
     private String salt;
     private boolean is_admin;
 
+
     public User(String email,String password)
     {
         this.email=email;
