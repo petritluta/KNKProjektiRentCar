@@ -125,6 +125,16 @@ public class MainScreenController extends BaseController {
     }
 
     @FXML
+    public void onInsertCarClick(ActionEvent ev) {
+        try {
+            this.setView(CARS_DETAILS_VIEW);
+        } catch (Exception ex) {
+            ErrorPopupComponent.show(ex);
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
     public void onAlMenuItemClick(ActionEvent ev) {
         enMenuItem.setSelected(false);
         alMenuItem.setSelected(true);
