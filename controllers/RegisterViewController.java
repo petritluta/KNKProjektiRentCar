@@ -2,10 +2,14 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Utils.DbHelper;
 import Utils.Security;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.User;
 import repositories.UserRepo;
@@ -58,45 +63,53 @@ public class RegisterViewController implements Initializable {
                 && confirmpassword.getText().isBlank() == false && emailfield.getText().isBlank() == false) {
             if ((passwordfield.getText().equals(confirmpassword.getText())) == false
             ) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Please confrim the password!");
-                alert.showAndWait();
+                created.setTextFill(Color.RED);
+                created.setText("     Please confrim the password!");
             } else if (is_Valid_Password(passwordfield.getText()) == false) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Pasword must contain at least 8 characters,one letter and one digit");
                 alert.showAndWait();
             } else if (is_Valid_Email(emailfield.getText()) == false) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Type a valid email");
-                alert.showAndWait();
-            } else
-                created.setText("Your account has been created successfully");
+                created.setTextFill(Color.RED);
+                created.setText("               Type a valid email");
+            }
+            else {
+                try {
+                    String emailF = emailfield.getText();
+                    String passwordF = passwordfield.getText();
+                    String salt = Security.generateSalt();
+                    String hashedPwd = Security.hashPassword(passwordF, salt);
+                    User user = new User(emailF, passwordF);
 
+                    String firstNamee = firstName.getText();
+                    String lastNamee = lastName.getText();
+
+                    if (!UserRepo.findemail(emailF)) {
+                        user.setFirst_name(firstNamee);
+                        user.setLast_name(lastNamee);
+                        user.setPassword(hashedPwd);
+                        user.setSalt(salt);
+                        user = UserRepo.create(user);
+                        created.setTextFill(Color.GREEN);
+                        created.setText("Your account has been created successfully");
+
+                    } else {
+                        created.setTextFill(Color.RED);
+                        created.setText("   This email is already being used");
+                    }
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Invalid credentials!");
             alert.showAndWait();
         }
 
-        try {
-            String emailF = emailfield.getText();
-            String passwordF = passwordfield.getText();
-            String salt = Security.generateSalt();
-            String hashedPwd = Security.hashPassword(passwordF,salt);
-            User user = new User(emailF,passwordF);
 
-            String firstNamee = firstName.getText();
-            String lastNamee = lastName.getText();
-
-            user.setFirst_name(firstNamee);
-            user.setLast_name(lastNamee);
-            user.setPassword(hashedPwd);
-            user.setSalt(salt);
-            user = UserRepo.create(user);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
     public static boolean is_Valid_Password(String password) {
@@ -141,5 +154,13 @@ public class RegisterViewController implements Initializable {
             rez = false;
         return rez;
     }
+    private static boolean isExistingEmail(String email) throws Exception {
+        String unique="SELECT * FROM users where email='"+email+"'";
+        Connection conn=DbHelper.getConnection();
+        PreparedStatement stmt=conn.prepareStatement(unique);
+        ResultSet res=stmt.executeQuery();
+        if (!res.next()) return false;
 
+        return true;
+    }
 }
