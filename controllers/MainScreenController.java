@@ -20,7 +20,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 //import components.AboutComponent;
-//import components.ErrorPopupComponent;
+import components.ErrorPopupComponent;
 import models.LangEnum;
 import models.User;
 import Utils.AppConfig;
@@ -126,7 +126,7 @@ public class MainScreenController extends BaseController {
         try {
             this.setView(CARS_LIST_VIEW);
         } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
+            ErrorPopupComponent.show(ex);
             ex.printStackTrace();
         }
     }
@@ -154,7 +154,7 @@ public class MainScreenController extends BaseController {
             loadLangTexts(bundle);
 
         } catch (Exception ex) {
-            //ErrorPopupComponent.show(ex);
+            ErrorPopupComponent.show(ex);
         }
     }
 

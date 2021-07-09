@@ -5,9 +5,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.Date;
 import java.util.ResourceBundle;
-
 import Utils.Security;
 import Utils.SessionManager;
+import components.ErrorPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -120,12 +120,12 @@ public class LoginViewController extends BaseController{
     public void loadLangTexts(ResourceBundle langBundle) {
         usernanme.setPromptText(langBundle.getString("login_email"));
         password.setPromptText(langBundle.getString("login_password"));
-//        try {
-//            String buttonText = langBundle.getString(hasUsers() ?
-//                    "login_button_login" : "login_button_register");
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//        }
+        try {
+            String buttonText = langBundle.getString(hasUsers() ?
+                    "login_button_login" : "login_button_register");
+        } catch (Exception ex) {
+            ErrorPopupComponent.show(ex);
+        }
     }
 
 }
