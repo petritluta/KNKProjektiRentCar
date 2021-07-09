@@ -17,8 +17,6 @@ public class Car {
         private Date updated_at;
         private String car_img;
 
-
-
         public Car(  int id,int publisher, int manufacture, String model, double price_per_day, double avg_fuel_km, Transmission transmission, double speed_limit, Type type, int seat_num, int door_num,Date inserted_at, Date updated_at,String car_img) {
 
             this.id=id;

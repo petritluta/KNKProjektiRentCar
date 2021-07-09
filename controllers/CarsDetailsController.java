@@ -11,6 +11,8 @@
 //import javafx.stage.FileChooser;
 //import javafx.stage.Stage;
 //import components.ErrorPopupComponent;
+//import models.Transmission;
+//import models.Type;
 //import models.Product;
 //import models.views.ProductViewModel;
 //import repositories.ProductRepository;
@@ -23,27 +25,49 @@
 //import java.util.ResourceBundle;
 //
 //public class CarsDetailsController extends ChildController {
-//    @FXML
-//    private TextField idField;
-//    @FXML
-//    private TextField titleField;
-//    @FXML
-//    private TextArea descriptionField;
-//    @FXML
-//    private ImageView imageField;
-//    @FXML
-//    private TextField priceField;
-//    @FXML
-//    private TextField qtyField;
-//    @FXML
-//    private TextField createdAtField;
-//    @FXML
-//    private TextField updatedAtField;
 //
+//@FXML
+//private int idField;
 //
+//@FXML
+//private int publisherField;
+//
+//@FXML
+//private int manufactureField;
+//
+//@FXML
+//private String modelField;
+//
+//@FXML
+//private ImageView imgField;
+//
+//@FXML
+//private double priceField;
+//
+//@FXML
+//private Transmission transmissionField;
+//
+//@FXML
+//private Date dateInsertedField;
+//
+//@FXML
+//private Date dateUpdatedField;
+//    @FXML
+//    private int seatnumField;
+//
+//    @FXML
+//    private int doornumField;
+//
+//    @FXML
+//    private Type typeField;
+//    @FXML
+//    private double speedlimitField;
+//    @FXML
+//    private double avgfuelField;
+
 //    private boolean isEditable = false;
 //    private ProductViewModel viewModel;
-//    private FileChooser fileChooser;
+//    private FileChooser fileChooser;*/
 //
 //    @Override
 //    public void initialize(URL location, ResourceBundle resources) {
@@ -51,7 +75,7 @@
 //        fileChooser = new FileChooser();
 //        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("image", "*.png", "*.jpg", "*.jpeg"));
 //    }
-//
+
 //    @FXML
 //    private void onCancelButtonClick(ActionEvent event) {
 //        try {
@@ -60,7 +84,7 @@
 //            ErrorPopupComponent.show(e);
 //        }
 //    }
-//
+
 //    @FXML
 //    private void onSaveButtonClick(ActionEvent event) {
 //        try {

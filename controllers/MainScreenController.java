@@ -157,7 +157,6 @@ public class MainScreenController extends BaseController {
             ErrorPopupComponent.show(ex);
         }
     }
-
     @Override
     public void loadLangTexts(ResourceBundle langBundle) {
         String navCarsTxt = langBundle.getString("main_nav_cars");

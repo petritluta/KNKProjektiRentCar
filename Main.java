@@ -34,7 +34,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception {
         //insertCarRecords();
-        //launch(args);
+        launch(args);
     }
 
     private static void insertCarRecords(){
@@ -70,7 +70,6 @@ public class Main extends Application {
                 }
 
 
-                
             }
         } catch (Exception ex) {
             System.out.println("Deshtoi");
