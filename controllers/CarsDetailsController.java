@@ -114,7 +114,7 @@ public class CarsDetailsController extends ChildController {
         avgfuelField.setDisable(!isEditable);
 
         if (isEditable) {
-            imgField.setOnMouseClicked(e -> this.onImageClick(e));
+            imgField.setOnMouseClicked(e -> this.onImageClick());
         } else {
             imgField.setOnMouseClicked(null);
         }
@@ -204,22 +204,40 @@ public class CarsDetailsController extends ChildController {
         });
     }
 
-    private void onImageClick(MouseEvent event) {
-        try {
-            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            File srcFile = fileChooser.showOpenDialog(primaryStage);
-            if (srcFile != null) {
-                FileHelper fh = FileHelper.get();
-                String filename = new Date().getTime() + (int) (Math.random() * 100) + "." + fh.fileExt(srcFile);
-                File destFile = new File(fh.getImageDir() + "/" + filename);
-                fh.copyFile(srcFile, destFile);
+//    private void onImageClick(MouseEvent event) {
+//        try {
+//            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            File srcFile = fileChooser.showOpenDialog(primaryStage);
+//            if (srcFile != null) {
+//                FileHelper fh = FileHelper.get();
+//                String filename = new Date().getTime() + (int) (Math.random() * 100) + "." + fh.fileExt(srcFile);
+//                File destFile = new File(fh.getImageDir() + "/" + filename);
+//                fh.copyFile(srcFile, destFile);
+//
+//                Image image = new Image(destFile.toURI().toString());
+//                imgField.setImage(image);
+//                viewModel.setCar_img(filename);
+//            }
+//        } catch (Exception e) {
+//            ErrorPopupComponent.show(e);
+//        }
+//    }
+private void onImageClick() {
+    try {
+        Stage primaryStage = (Stage) idField.getScene().getWindow();
+        File srcFile = fileChooser.showOpenDialog(primaryStage);
+        if (srcFile != null) {
+            FileHelper fh = FileHelper.get();
+            String filename = new Date().getTime() + (int) (Math.random() * 100) + "." + fh.fileExt(srcFile);
+            File destFile = new File(fh.getImageDir() + "/" + filename);
+            fh.copyFile(srcFile, destFile);
 
-                Image image = new Image(destFile.toURI().toString());
-                imgField.setImage(image);
-                viewModel.setCar_img(filename);
-            }
-        } catch (Exception e) {
-            ErrorPopupComponent.show(e);
+            Image image = new Image(destFile.toURI().toString());
+            imgField.setImage(image);
+            viewModel.setCar_img(filename);
         }
+    } catch (Exception e) {
+        ErrorPopupComponent.show(e);
     }
+}
 }

@@ -85,7 +85,7 @@
                               <TextField fx:id="publisherField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                               <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="text-field" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="3">
                                   <children>
-                                      <ImageView fx:id="imgField" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true" />
+                                      <ImageView fx:id="imgField" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                                   </children>
                               </StackPane>
                               <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
