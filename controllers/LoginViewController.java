@@ -37,47 +37,43 @@ public class LoginViewController extends BaseController{
     @FXML
     private void loginclicked (ActionEvent event) throws Exception {
         if (usernanme.getText().isBlank()==false && password.getText().isBlank()==false) {
-            Parent parent = FXMLLoader.load(getClass().getResource("main-screen.fxml"));
-            Scene scene = new Scene(parent);
-            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            try {
+                User user = null;
+                String emailF = usernanme.getText();
+                String passwordF = password.getText();
+
+                if(hasUsers()) {
+                    login(emailF, passwordF);
+                } else {
+                    //me qit exception qe me dal te regjistrimi
+                }
+
+                if (user == null) throw new Exception("Invalid credentials");
+                SessionManager.employer = user;
+                SessionManager.lastLogin = new Date();
+
+
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
+
+                Parent parent = loader.load();
+                MainScreenController controller = loader.getController();
+                controller.setView(MainScreenController.CARS_LIST_VIEW);
+
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(parent);
+                primaryStage.setScene(scene);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Username and password fields are requaried!");
             alert.showAndWait();
         }
 
-        try {
-            User user = null;
-            String emailF = usernanme.getText();
-            String passwordF = password.getText();
 
-            if(hasUsers()) {
-                login(emailF, passwordF);
-            } else {
-                //me qit exception qe me dal te regjistrimi
-            }
-
-            if (user == null) throw new Exception("Invalid credentials");
-            SessionManager.employer = user;
-            SessionManager.lastLogin = new Date();
-
-
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
-
-            Parent parent = loader.load();
-            MainScreenController controller = loader.getController();
-            controller.setView(MainScreenController.CARS_LIST_VIEW);
-
-            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(parent);
-            primaryStage.setScene(scene);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
     private boolean hasUsers() throws Exception {
