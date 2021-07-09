@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -30,7 +31,10 @@ public class CarsListController extends ChildController {
     private VBox carsPane;
     @FXML
     private HBox btnPane;
-
+    @FXML
+    ComboBox<String> Brands ;
+    @FXML
+    ComboBox<String> types ;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
