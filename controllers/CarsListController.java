@@ -4,10 +4,11 @@ import components.CarCardComponent;
 import components.PageBtnComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-//import components.ErrorPopupComponent;
+import components.ErrorPopupComponent;
 //import components.PaginationComponent;
 //import components.UserCardComponent;
 import javafx.scene.layout.VBox;
@@ -25,6 +26,9 @@ public class CarsListController extends ChildController {
     @FXML
     private VBox carsPane;
     @FXML
+    private HBox paginationPane;
+    @FXML
+    private Button showAllButton;
     private HBox btnPane;
 
     @Override
@@ -39,11 +43,11 @@ public class CarsListController extends ChildController {
 //                    ErrorPopupComponent.show(e);
 //                }
 //            });
-//
+
             System.out.println("erdhh");
             showUsers(10);
         } catch (Exception e) {
-//            ErrorPopupComponent.show(e);
+            ErrorPopupComponent.show(e);
         }
     }
 
@@ -105,6 +109,7 @@ public class CarsListController extends ChildController {
 
     @Override
     public void loadLangTexts(ResourceBundle langBundle) {
-
+        super.loadLangTexts(langBundle);
+        this.showAllButton.setText(langBundle.getString("cars_list_show_all_button"));
     }
 }

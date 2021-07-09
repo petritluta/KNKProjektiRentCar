@@ -31,8 +31,6 @@ public class RegisterViewController implements Initializable {
     @FXML
     private TextField emailfield;
     @FXML
-    private DatePicker datefield;
-    @FXML
     private Button create;
     @FXML
     private Label created;
@@ -55,8 +53,7 @@ public class RegisterViewController implements Initializable {
     private void createclicked(ActionEvent event) throws Exception {
 
         if (userfield.getText().isBlank() == false && passwordfield.getText().isBlank() == false
-                && confirmpassword.getText().isBlank() == false && emailfield.getText().isBlank() == false
-                && datefield.getValue() != null) {
+                && confirmpassword.getText().isBlank() == false && emailfield.getText().isBlank() == false) {
             if ((passwordfield.getText().equals(confirmpassword.getText())) == false
             ) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -77,6 +74,24 @@ public class RegisterViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Invalid credentials!");
             alert.showAndWait();
+        }
+
+        try {
+
+            String emailF = userfield.getText();
+            String passwordF = passwordfield.getText();
+            String salt = Security.generateSalt();
+            String hashedPwd = Security.hashPassword(passwordF,salt);
+            User user = new User(emailF,passwordF);
+
+            //user.setFirst_name(firstName);
+            //user.setLast_name(lastName);
+            user.setPassword(hashedPwd);
+            user.setSalt(salt);
+            user = UserRepo.create(user);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

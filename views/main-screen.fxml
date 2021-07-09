@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="880.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="880.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainScreenController">
     <top>
         <VBox alignment="TOP_CENTER" style="-fx-background-color: #99bbc7;" styleClass="navbar" BorderPane.alignment="CENTER">
             <children>
@@ -82,17 +82,17 @@
             <children>
                 <VBox prefHeight="493.0" prefWidth="130.0" spacing="5.0">
                     <children>
-                        <Button fx:id="carsButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onCarsBtnClick" style="-fx-background-color: #027399;" styleClass="nav-link" text="Cars">
+                        <Button fx:id="navCarsButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onCarsBtnClick" style="-fx-background-color: #027399;" styleClass="nav-link" text="Cars">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" style="-fx-background-color: #027399;" styleClass="nav-link" text="Buyers">
+                        <Button fx:id="navEmployersButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" style="-fx-background-color: #027399;" styleClass="nav-link" text="Buyers">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" style="-fx-background-color: #027399;" styleClass="nav-link" text="Logout">
+                        <Button fx:id="navLogoutButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" style="-fx-background-color: #027399;" styleClass="nav-link" text="Logout">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>
@@ -103,8 +103,8 @@
                     <children>
                         <SplitMenuButton mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" text="Language" VBox.vgrow="ALWAYS">
                             <items>
-                                <CheckMenuItem fx:id="enCheckMenuItem" mnemonicParsing="false" text="English" />
-                                <CheckMenuItem fx:id="alCheckMenuItem" mnemonicParsing="false" text="Shqip" />
+                                <CheckMenuItem fx:id="enCheckMenuItem" mnemonicParsing="false" onAction="#onEnMenuItemClick" text="English" />
+                                <CheckMenuItem fx:id="alCheckMenuItem" mnemonicParsing="false" onAction="#onAlMenuItemClick" text="Shqip" />
                             </items>
                             <VBox.margin>
                                 <Insets />
