@@ -43,6 +43,7 @@ public class CarRepo {
 
         ResultSet res = stmt.executeQuery();
         if (!res.next()) return null;
+        if (!res.next()) return null;
         return parseRes(res);
     }
 
