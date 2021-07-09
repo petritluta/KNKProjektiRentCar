@@ -201,6 +201,7 @@ public class MainScreenController extends BaseController {
             Scene scene = new Scene(parent);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
         }
     }

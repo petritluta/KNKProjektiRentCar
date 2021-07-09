@@ -44,9 +44,10 @@ public class LoginViewController extends BaseController{
 
                 if(hasUsers()) {
                     user = login(emailF, passwordF);
-                } else {
-                    //me qit exception qe me dal te regjistrimi
                 }
+//                else {
+//                    //me qit exception qe me dal te regjistrimi
+//                }
 
                 if (user == null) throw new Exception("Invalid credentials");
                 SessionManager.employer = user;
@@ -63,13 +64,14 @@ public class LoginViewController extends BaseController{
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(parent);
                 primaryStage.setScene(scene);
+                primaryStage.setResizable(false);
 
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Username and password fields are requaried!");
+            alert.setContentText("Username and password fields are requaired!");
             alert.showAndWait();
         }
 
@@ -98,7 +100,7 @@ public class LoginViewController extends BaseController{
     private void cancelclicked(ActionEvent event) throws Exception {
         Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Exit");
-        alert.setContentText("Are you sure you want to leav ?");
+        alert.setContentText("Are you sure you want to leave ?");
         if(alert.showAndWait().get()==ButtonType.OK){
         Stage stage=(Stage) cancel.getScene().getWindow();
         stage.close();
@@ -111,6 +113,7 @@ public class LoginViewController extends BaseController{
         Scene scene = new Scene(parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
