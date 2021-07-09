@@ -61,10 +61,10 @@ public class MainScreenController extends BaseController {
     @FXML
     private CheckMenuItem alMenuItem;
 
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 //        super.initialize(location, resources);
-//
+
 //        boolean enSelected = AppConfig.get().getLanguage() == LangEnum.EN;
 //        enCheckMenuItem.setSelected(enSelected);
 //        alCheckMenuItem.setSelected(!enSelected);
@@ -76,7 +76,7 @@ public class MainScreenController extends BaseController {
 //            userMenuItem.setOnAction(null);
 //        }
 //    }
-
+    }
     public void setView(String view) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(this.viewPath(view)));
@@ -113,17 +113,27 @@ public class MainScreenController extends BaseController {
     private String viewPath(String view) {
         return VIEW_PATH + "/" + view + ".fxml";
     }
-//
-//    @FXML
-//    public void onCarsBtnClick(ActionEvent ev) {
-//        try {
-//            this.setView(CARS_LIST_VIEW);
-//        } catch (Exception ex) {
-//            ErrorPopupComponent.show(ex);
-//            ex.printStackTrace();
-//        }
-//    }
-//
+
+    @FXML
+    public void onCarsBtnClick(ActionEvent ev) {
+        try {
+            this.setView(CARS_LIST_VIEW);
+        } catch (Exception ex) {
+            ErrorPopupComponent.show(ex);
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onInsertCarClick(ActionEvent ev) {
+        try {
+            this.setView(CARS_DETAILS_VIEW);
+        } catch (Exception ex) {
+            ErrorPopupComponent.show(ex);
+            ex.printStackTrace();
+        }
+    }
+
     @FXML
     public void onAlMenuItemClick(ActionEvent ev) {
         enMenuItem.setSelected(false);

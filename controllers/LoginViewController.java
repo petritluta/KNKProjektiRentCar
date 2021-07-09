@@ -58,7 +58,7 @@ public class LoginViewController extends BaseController{
 
                 Parent parent = loader.load();
                 MainScreenController controller = loader.getController();
-//                controller.setView(MainScreenController.CARS_LIST_VIEW);
+                controller.setView(MainScreenController.CARS_LIST_VIEW);
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(parent);
@@ -85,7 +85,6 @@ public class LoginViewController extends BaseController{
 
         if (user == null)
         {
-            System.out.println("Useri su gjet");
             return user; //qetu na me qit ni tekst mi than regjistroju}
         }
 
