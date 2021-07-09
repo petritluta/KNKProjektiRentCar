@@ -61,6 +61,7 @@ public class MainScreenController extends BaseController {
     @FXML
     private CheckMenuItem alMenuItem;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        super.initialize(location, resources);
@@ -76,6 +77,12 @@ public class MainScreenController extends BaseController {
 //            userMenuItem.setOnAction(null);
 //        }
 //    }
+
+        String statusText = "User %s logged in at %s";
+        String userr = SessionManager.employer.getFirst_name();
+        String lastLoginn = DateHelper.toSqlFormat(SessionManager.lastLogin);
+        statusLabel.setText(String.format(statusText, userr, lastLoginn));
+
     }
     public void setView(String view) throws Exception {
         FXMLLoader loader = new FXMLLoader();
