@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.Date;
 import java.util.ResourceBundle;
 import Utils.Security;
@@ -11,14 +10,11 @@ import components.ErrorPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import models.User;
 import repositories.UserRepo;
@@ -28,19 +24,16 @@ public class LoginViewController extends BaseController{
     private TextField usernanme;
     @FXML
     private PasswordField password;
-
     @FXML
     private Button login;
-
     @FXML
     private Button cancel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
-
     }
+
     @FXML
     private void loginclicked (ActionEvent event) throws Exception {
         if (usernanme.getText().isBlank()==false && password.getText().isBlank()==false) {
@@ -85,8 +78,6 @@ public class LoginViewController extends BaseController{
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-
     }
 
     private boolean hasUsers() throws Exception {
@@ -120,7 +111,7 @@ public class LoginViewController extends BaseController{
 
     @Override
     public void loadLangTexts(ResourceBundle langBundle) {
-        usernanme.setPromptText(langBundle.getString("login_email"));
+        usernanme.setPromptText(langBundle.getString("login_username"));
         password.setPromptText(langBundle.getString("login_password"));
         try {
             String buttonText = langBundle.getString(hasUsers() ?
@@ -129,5 +120,4 @@ public class LoginViewController extends BaseController{
             ErrorPopupComponent.show(ex);
         }
     }
-
 }
