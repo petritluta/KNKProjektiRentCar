@@ -3,12 +3,18 @@ package models;
 
 public class User {
 
+    private int id;
     private String first_name;
     private String last_name;
     private String email;
     private String password;
     private String salt;
     private boolean is_admin;
+
+    public User() {
+        this(-1,"","","","","",true);
+    }
+
 
     public User(String email,String password)
     {
@@ -36,6 +42,18 @@ public class User {
         this.is_admin=is_admin;
     }
 
+    public User(String first_name,String last_name,String email,String password,String salt,boolean is_admin)
+    {
+
+        this.first_name=first_name;
+        this.last_name=last_name;
+        this.email=email;
+        this.password=password;
+        this.salt=salt;
+        this.is_admin=is_admin;
+    }
+
+
 
     public int getId() {
         return id;
@@ -45,7 +63,6 @@ public class User {
         this.id = id;
     }
 
-    private int id;
 
     public String getFirst_name() {
         return first_name;

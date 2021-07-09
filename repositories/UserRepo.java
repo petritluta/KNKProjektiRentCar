@@ -48,6 +48,16 @@ public class UserRepo {
 
         return getUserFromRes(res);
     }
+    public static boolean findemail(String email) throws  Exception{
+        String unique="SELECT * FROM users where email='"+email+"'";
+        Connection conn=DbHelper.getConnection();
+        PreparedStatement stmt=conn.prepareStatement(unique);
+
+        ResultSet res=stmt.executeQuery();
+        if (!res.next()) return false;
+
+        return true;
+    }
 
     public static List<User> getAll() throws Exception {
         Connection conn=DbHelper.getConnection();
