@@ -31,7 +31,7 @@ public class CarRepo {
         stmt.setInt(2, pageSize * page);
         ResultSet res = stmt.executeQuery();
         while (res.next()) {
-//            list.add(parseRes(res));
+            list.add(parseRes(res));
         }
         return list;
     }
