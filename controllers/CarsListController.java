@@ -66,7 +66,7 @@ public class CarsListController extends ChildController {
         carsPane.getChildren().clear();
         List<Car> cars = CarRepo.getAll(PAGE_SIZE, page);
         for (Car car : cars) {
-            Node carCard = new CarCardComponent().getContent(car,null,null);
+            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car));
             carsPane.getChildren().add(carCard);
         }
 
@@ -82,20 +82,21 @@ public class CarsListController extends ChildController {
         }
     }
 
-//    private void showUser(User user) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(getClass().getResource("../views/" + MainScreenController.BUYERS_DETAILS_VIEW + ".fxml"));
-//
-//            Pane pane = loader.load();
-//            BuyersDetailsController controller = loader.getController();
-//            controller.setModel(user);
-//
-//            parentController.setView(MainScreenController.BUYERS_DETAILS_VIEW, pane, controller);
-//        } catch (Exception e) {
-//            ErrorPopupComponent.show(e);
-//        }
-//    }
+    private void showCar(Car car) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/cars-details.fxml"));
+
+            Pane pane = loader.load();
+            CarsDetailsController controller = loader.getController();
+            controller.setModel(car);
+
+            parentController.setView(MainScreenController.CARS_DETAILS_VIEW, pane, controller);
+        } catch (Exception e) {
+            ErrorPopupComponent.show(e);
+        }
+    }
+
 
     @Override
     public void loadLangTexts(ResourceBundle langBundle) {
