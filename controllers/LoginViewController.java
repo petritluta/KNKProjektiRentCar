@@ -38,11 +38,13 @@ public class LoginViewController extends BaseController{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+
     }
     @FXML
     private void loginclicked (ActionEvent event) throws Exception {
         if (usernanme.getText().isBlank()==false && password.getText().isBlank()==false) {
-            Parent parent = FXMLLoader.load(getClass().getResource("try.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("main-screen.fxml"));
             Scene scene = new Scene(parent);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(scene);

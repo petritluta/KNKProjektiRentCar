@@ -65,8 +65,8 @@ public class MainScreenController extends BaseController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        super.initialize(location, resources);
-
+//        super.initialize(location, resources);
+//
 //        boolean enSelected = AppConfig.get().getLanguage() == LangEnum.EN;
 //        enCheckMenuItem.setSelected(enSelected);
 //        alCheckMenuItem.setSelected(!enSelected);
@@ -113,50 +113,56 @@ public class MainScreenController extends BaseController {
                 throw new Exception("ERR_VIEW_NOT_FOUND");
         }
 
-        activeView = view;
-        loadLangTexts(getLangBundle());
+//        activeView = view;
+//        loadLangTexts(getLangBundle());
+//        ChildController controller1 = loader.getController();
+//        controller.setParentController(this);
+//
+//        contentPage.getChildren().clear();
+//        contentPage.getChildren().add(pane);
+//        VBox.setVgrow(pane, Priority.ALWAYS);
     }
 
     private String viewPath(String view) {
         return VIEW_PATH + "/" + view + ".fxml";
     }
+//
+//    @FXML
+//    public void onCarsBtnClick(ActionEvent ev) {
+//        try {
+//            this.setView(CARS_LIST_VIEW);
+//        } catch (Exception ex) {
+//            ErrorPopupComponent.show(ex);
+//            ex.printStackTrace();
+//        }
+//    }
+//
+//    @FXML
+//    public void onAlMenuItemClick(ActionEvent ev) {
+//        enMenuItem.setSelected(false);
+//        alMenuItem.setSelected(true);
+//        updateLanguage();
+//    }
+//
+//    @FXML
+//    public void onEnMenuItemClick(ActionEvent ev) {
+//        enMenuItem.setSelected(true);
+//        alMenuItem.setSelected(false);
+//        updateLanguage();
+//    }
 
-    @FXML
-    public void onCarsBtnClick(ActionEvent ev) {
-        try {
-            this.setView(CARS_LIST_VIEW);
-        } catch (Exception ex) {
-            ErrorPopupComponent.show(ex);
-            ex.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void onAlMenuItemClick(ActionEvent ev) {
-        enMenuItem.setSelected(false);
-        alMenuItem.setSelected(true);
-        updateLanguage();
-    }
-
-    @FXML
-    public void onEnMenuItemClick(ActionEvent ev) {
-        enMenuItem.setSelected(true);
-        alMenuItem.setSelected(false);
-        updateLanguage();
-    }
-
-    private void updateLanguage() {
-        try {
-            LangEnum lang = enMenuItem.isSelected() ? LangEnum.EN : LangEnum.AL;
-            AppConfig conf = AppConfig.get();
-            conf.setLanguage(lang);
-            ResourceBundle bundle = getLangBundle();
-            loadLangTexts(bundle);
-
-        } catch (Exception ex) {
-            ErrorPopupComponent.show(ex);
-        }
-    }
+//    private void updateLanguage() {
+//        try {
+//            LangEnum lang = enMenuItem.isSelected() ? LangEnum.EN : LangEnum.AL;
+//            AppConfig conf = AppConfig.get();
+//            conf.setLanguage(lang);
+//            ResourceBundle bundle = getLangBundle();
+//            loadLangTexts(bundle);
+//
+//        } catch (Exception ex) {
+//            ErrorPopupComponent.show(ex);
+//        }
+//    }
 
     @Override
     public void loadLangTexts(ResourceBundle langBundle) {

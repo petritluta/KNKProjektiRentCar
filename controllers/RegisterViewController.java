@@ -23,7 +23,9 @@ import repositories.UserRepo;
 
 public class RegisterViewController implements Initializable {
     @FXML
-    private TextField userfield;
+    private TextField firstName;
+    @FXML
+    private TextField lastName;
     @FXML
     private PasswordField passwordfield;
     @FXML
@@ -52,7 +54,7 @@ public class RegisterViewController implements Initializable {
     @FXML
     private void createclicked(ActionEvent event) throws Exception {
 
-        if (userfield.getText().isBlank() == false && passwordfield.getText().isBlank() == false
+        if (firstName.getText().isBlank() == false && passwordfield.getText().isBlank() == false
                 && confirmpassword.getText().isBlank() == false && emailfield.getText().isBlank() == false) {
             if ((passwordfield.getText().equals(confirmpassword.getText())) == false
             ) {
@@ -77,15 +79,17 @@ public class RegisterViewController implements Initializable {
         }
 
         try {
-
-            String emailF = userfield.getText();
+            String emailF = emailfield.getText();
             String passwordF = passwordfield.getText();
             String salt = Security.generateSalt();
             String hashedPwd = Security.hashPassword(passwordF,salt);
             User user = new User(emailF,passwordF);
 
-            //user.setFirst_name(firstName);
-            //user.setLast_name(lastName);
+            String firstNamee = firstName.getText();
+            String lastNamee = lastName.getText();
+
+            user.setFirst_name(firstNamee);
+            user.setLast_name(lastNamee);
             user.setPassword(hashedPwd);
             user.setSalt(salt);
             user = UserRepo.create(user);

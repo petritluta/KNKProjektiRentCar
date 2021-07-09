@@ -25,7 +25,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource("views/main-screen.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("views/LoginView.fxml"));
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
@@ -33,8 +33,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws Exception {
-        //insertCarRecords();
-        //launch(args);
+        insertCarRecords();
+        launch(args);
     }
 
     private static void insertCarRecords(){
