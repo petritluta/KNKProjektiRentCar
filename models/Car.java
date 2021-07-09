@@ -30,6 +30,8 @@ public class Car {
             this.type=type;
             this.seat_num=seat_num;
             this.door_num=door_num;
+            this.inserted_at = inserted_at;
+            this.updated_at = updated_at;
             this.car_img=car_img;
         }
         public Car() {
