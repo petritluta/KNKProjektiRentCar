@@ -2,9 +2,8 @@
 import Utils.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import models.*;
@@ -12,7 +11,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import repositories.CarRepo;
 
@@ -25,10 +23,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource("views/LoginView.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(event ->
+        {
+            event.consume();//consume the event
+            exit(stage);
+        });
 
     }
 
@@ -73,6 +76,15 @@ public class Main extends Application {
             }
         } catch (Exception ex) {
             System.out.println("Deshtoi");
+        }
+    }
+
+    private void exit(Stage stage) {
+        Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Exit");
+        alert.setContentText("Are you sure you want to leav ?");
+        if(alert.showAndWait().get()==ButtonType.OK){
+            stage.close();
         }
     }
 }
