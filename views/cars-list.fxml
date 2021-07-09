@@ -10,7 +10,7 @@
 
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CarsListController">
     <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" />
+      <HBox prefHeight="93.0" prefWidth="600.0" />
         <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #99bbc7;" VBox.vgrow="ALWAYS">
          <content>
             <VBox fx:id="carsPane" minHeight="300.0" minWidth="200.0" />
