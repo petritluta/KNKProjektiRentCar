@@ -26,6 +26,7 @@ public class Main extends Application {
         Parent parent = FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
         Scene scene = new Scene(parent);
         stage.setScene(scene);
+        stage.setTitle("Interactive system for booking rental cars");
         stage.show();
         stage.setOnCloseRequest(event ->
         {
@@ -76,14 +77,14 @@ public class Main extends Application {
 
             }
         } catch (Exception ex) {
-            System.out.println("Deshtoi");
+            System.out.println("Unsuccessful execution!");
         }
     }
 
     private void exit(Stage stage) {
         Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Exit");
-        alert.setContentText("Are you sure you want to leave?");
+        alert.setContentText("Are you sure you want to exit?");
         if(alert.showAndWait().get()==ButtonType.OK){
             stage.close();
         }
