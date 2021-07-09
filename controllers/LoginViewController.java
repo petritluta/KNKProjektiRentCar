@@ -92,8 +92,13 @@ public class LoginViewController extends BaseController{
 
     @FXML
     private void cancelclicked(ActionEvent event) throws Exception {
+        Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Exit");
+        alert.setContentText("Are you sure you want to leav ?");
+        if(alert.showAndWait().get()==ButtonType.OK){
         Stage stage=(Stage) cancel.getScene().getWindow();
         stage.close();
+        }
     }
 
     @FXML
