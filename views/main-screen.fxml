@@ -65,7 +65,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Help">
+                                <MenuItem mnemonicParsing="false" onAction="#help" text="Help">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                     </accelerator></MenuItem>
@@ -86,7 +86,7 @@
                                 <Font name="Arial" size="12.0" />
                             </font>
                         </Button>
-                        <Button fx:id="navEmployersButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" style="-fx-background-color: #027399;" styleClass="nav-link" text="Buyers">
+                        <Button fx:id="navExpiredButton" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onExpiredBtnClick" style="-fx-background-color: #027399;" styleClass="nav-link" text="Expired">
                             <font>
                                 <Font name="Arial" size="12.0" />
                             </font>

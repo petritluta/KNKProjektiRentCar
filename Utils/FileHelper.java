@@ -26,7 +26,7 @@ public class FileHelper {
     }
 
     public String getImageDir() {
-        return rootDir + "\\data/images";
+        return rootDir + "\\data\\images";  // C:\Users\Erlis Lushtaku\Desktop
     }
 
     public void loadImageDir() throws Exception {
