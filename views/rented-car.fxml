@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: linear-gradient(to top, #027399, #99bbc7);" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: linear-gradient(to top, #027399, #99bbc7);" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RentedCarController">
     <children>
         <GridPane alignment="CENTER" hgap="15.0" layoutX="90.0" layoutY="77.0" prefWidth="270.0" vgap="15.0">
             <columnConstraints>
@@ -59,13 +59,13 @@
                         <Font name="Times New Roman" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="CarID" prefHeight="30.0" GridPane.columnIndex="1" />
-                <TextField fx:id="PersonID" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="totalPrice" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <DatePicker fx:id="startdate" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <DatePicker fx:id="enddate" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <ComboBox fx:id="paymentMethod" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" text="Rent car" GridPane.rowIndex="6" />
+                <TextField fx:id="carfield" prefHeight="30.0" GridPane.columnIndex="1" />
+                <TextField fx:id="personfield" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="totalprice" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <DatePicker fx:id="startdate" onMouseExited="#insertEndDate" prefHeight="30.0" editable="false"   GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <DatePicker fx:id="enddate" onMouseExited="#insertEndDate" editable="false" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <ComboBox fx:id="payment" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" text="Rent car" onAction="#rentCar"  GridPane.rowIndex="6" />
             <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="30.0" />

@@ -89,7 +89,7 @@ public class CarsListController extends ChildController {
         carsPane.getChildren().clear();
         List<Car> cars = CarRepo.getAll(PAGE_SIZE, page);
         for (Car car : cars) {
-            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car),e->showDetails(car));
+            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car),e->rentCar(car));
             carsPane.getChildren().add(carCard);
         }
     }
@@ -97,20 +97,19 @@ public class CarsListController extends ChildController {
         carsPane.getChildren().clear();
         List<Car> cars = CarRepo.getSelectedCars(queryString);
         for (Car car : cars) {
-            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car),e->showDetails(car));
+            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car),e->rentCar(car));
             carsPane.getChildren().add(carCard);
         }
     }
 
-public void showDetails(Car car){
+public void rentCar(Car car){
     try {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../views/cars-details.fxml"));
+        loader.setLocation(getClass().getResource("../views/rented-car.fxml"));
 
         Pane pane = loader.load();
-        CarsDetailsController controller = loader.getController();
-        controller.setModel(car);
-        controller.setEditable(false);
+        RentedCarController controller = loader.getController();
+        controller.setId(car);
 
         parentController.setView(MainScreenController.CARS_DETAILS_VIEW, pane, controller);
     } catch (Exception e) {
