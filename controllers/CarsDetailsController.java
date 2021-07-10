@@ -226,15 +226,16 @@ private void onImageClick() {
     try {
         Stage primaryStage = (Stage) idField.getScene().getWindow();
         File srcFile = fileChooser.showOpenDialog(primaryStage);
+
         if (srcFile != null) {
             FileHelper fh = FileHelper.get();
             String filename = new Date().getTime() + (int) (Math.random() * 100) + "." + fh.fileExt(srcFile);
-            File destFile = new File(fh.getImageDir() + "\\" + filename);
+            File destFile = new File(fh.getImageDir() + "/" + filename);
             fh.copyFile(srcFile, destFile);
 
             Image image = new Image(destFile.toURI().toString());
             imgField.setImage(image);
-            viewModel.setCar_img(filename);
+            viewModel.setCar_img("resources/images/Cars/"+filename);
         }
     } catch (Exception e) {
         ErrorPopupComponent.show(e);

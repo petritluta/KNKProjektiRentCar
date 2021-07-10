@@ -133,14 +133,14 @@ public class CarRepo {
         if (stmt.executeUpdate() != 1)
             throw new Exception("ERR_NO_ROW_CHANGE");
 
-        ResultSet res = conn.createStatement().executeQuery("SELECT * FROM products ORDER BY createdAt DESC LIMIT 1");
+        ResultSet res = conn.createStatement().executeQuery("SELECT * FROM car ORDER BY createdAt DESC LIMIT 1");
         res.next();
         return parseRes(res);
     }
 
     public static Car update(Car model) throws Exception {
         Connection conn = DbHelper.getConnection();
-        String query = "UPDATE Car SET publisher = ?, maunfacture = ?, model = ?, price_per_day = ?, avg_fuel_km = ?, transmission = ?, speed_limit = ?, type = ?, seat_num = ?, door_num = ?, inserted_at = ?, updatedAt = CURRENT_TIMESTAMP, car_img = ? WHERE id = ?";
+        String query = "UPDATE Car SET publisher = ?, manufacture = ?, model = ?, price_per_day = ?, avg_fuel_km = ?, transmission = ?, speed_limit = ?, type = ?, seat_num = ?, door_num = ?, inserted_at = ?, updated_at = CURRENT_TIMESTAMP, car_img = ? WHERE id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, model.getPublisher());
         stmt.setInt(2, model.getManufacture());
@@ -153,9 +153,8 @@ public class CarRepo {
         stmt.setInt(9, model.getSeat_num());
         stmt.setInt(10, model.getDoor_num());
         stmt.setTimestamp(11, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-        stmt.setTimestamp(12, java.sql.Timestamp.valueOf(DateHelper.toSqlFormat(model.getUpdated_at())));
-        stmt.setString(13,model.getCar_img());
-        stmt.setInt(14, model.getId());
+        stmt.setString(12,model.getCar_img());
+        stmt.setInt(13, model.getId());
 
         if (stmt.executeUpdate() != 1)
             throw new Exception("ERR_NO_ROW_CHANGE");
