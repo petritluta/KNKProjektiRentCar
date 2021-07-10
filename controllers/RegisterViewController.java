@@ -155,13 +155,5 @@ public class RegisterViewController implements Initializable {
             rez = false;
         return rez;
     }
-    private static boolean isExistingEmail(String email) throws Exception {
-        String unique="SELECT * FROM users where email='"+email+"'";
-        Connection conn=DbHelper.getConnection();
-        PreparedStatement stmt=conn.prepareStatement(unique);
-        ResultSet res=stmt.executeQuery();
-        if (!res.next()) return false;
 
-        return true;
-    }
 }
