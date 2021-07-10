@@ -89,7 +89,7 @@ public class CarsListController extends ChildController {
         carsPane.getChildren().clear();
         List<Car> cars = CarRepo.getAll(PAGE_SIZE, page);
         for (Car car : cars) {
-            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car));
+            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car),e->showDetails(car));
             carsPane.getChildren().add(carCard);
         }
     }
@@ -97,11 +97,28 @@ public class CarsListController extends ChildController {
         carsPane.getChildren().clear();
         List<Car> cars = CarRepo.getSelectedCars(queryString);
         for (Car car : cars) {
-            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car));
+            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car),e->showDetails(car));
             carsPane.getChildren().add(carCard);
         }
     }
 
+public void showDetails(Car car){
+    try {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/cars-details.fxml"));
+
+        Pane pane = loader.load();
+        CarsDetailsController controller = loader.getController();
+        controller.setModel(car);
+        controller.setEditable(false);
+
+        parentController.setView(MainScreenController.CARS_DETAILS_VIEW, pane, controller);
+    } catch (Exception e) {
+        ErrorPopupComponent.show(e);
+    }
+
+
+}
 
     private void removeCar(Car car) {
         try {

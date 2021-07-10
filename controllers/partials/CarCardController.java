@@ -21,6 +21,8 @@ public class CarCardController implements Initializable {
     @FXML
     private Button editButton;
     @FXML
+    private Button showButton;
+    @FXML
     private Label model;
     @FXML
     private Label type;
@@ -70,6 +72,9 @@ public class CarCardController implements Initializable {
 
     public void setOnDeleteAction(EventHandler<ActionEvent> handler) {
         this.deleteButton.setOnAction(handler);
+    }
+    public void setOnShowButton(EventHandler<ActionEvent> handler) {
+        this.showButton.setOnAction(handler);
     }
 }
 

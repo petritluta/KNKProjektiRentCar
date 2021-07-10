@@ -69,6 +69,8 @@ public class CarsDetailsController extends ChildController {
     @FXML
     private TextField avgfuelField;
 
+
+
     private boolean isEditable = false;
     private CarViewModel viewModel;
     private FileChooser fileChooser;
