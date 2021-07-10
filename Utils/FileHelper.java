@@ -26,7 +26,7 @@ public class FileHelper {
     }
 
     public String getImageDir() {
-        return rootDir + "/resources/images/Cars";  // C:\Users\Erlis Lushtaku\Desktop
+        return (rootDir + "/resources/images/Cars").replace("%20"," ");  // C:\Users\Erlis Lushtaku\Desktop
     }
 
     public void loadImageDir() throws Exception {

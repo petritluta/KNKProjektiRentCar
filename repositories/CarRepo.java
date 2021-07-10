@@ -133,7 +133,7 @@ public class CarRepo {
         if (stmt.executeUpdate() != 1)
             throw new Exception("ERR_NO_ROW_CHANGE");
 
-        ResultSet res = conn.createStatement().executeQuery("SELECT * FROM car ORDER BY createdAt DESC LIMIT 1");
+        ResultSet res = conn.createStatement().executeQuery("SELECT * FROM car ORDER BY inserted_at DESC LIMIT 1");
         res.next();
         return parseRes(res);
     }
