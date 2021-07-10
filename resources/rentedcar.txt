@@ -1,3 +1,17 @@
+-- Donati
+alter table car add column inserted_at datetime default CURRENT_TIMESTAMP after door_num;
+alter table car add column updated_at datetime;
+alter table car add column car_img varchar(255);
+-- Enesi
+alter table car drop column type ;
+alter table car add column type enum('Sedan','SUV','Cabriolet','Sports Car') after speed_limit;
+insert into manufacture(name) values('Audi');
+insert into manufacture(name) values('BMW'),('Mercedes');
+ALTER TABLE rentedcar
+DROP FOREIGN KEY rentedcar_ibfk_1;
+ALTER TABLE rentedcar ADD CONSTRAINT fk_car FOREIGN KEY (car) REFERENCES car(id) ON DELETE CASCADE;
+
+insert into users values(1,"user1","asfas","asfasgaw","fasgqas","asgeaa",1,current_timestamp(),current_timestamp());
 
 insert into rentedcar (car, person_id, start_date, end_date, total_price, payment_method) values
 (2, '1672834073', '2021-07-09 07:00:00', '2021-07-16 07:00:00', 416.64, 'Card'),

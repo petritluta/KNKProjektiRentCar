@@ -2,15 +2,30 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CarsListController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="700.0" spacing="5.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CarsListController">
     <children>
-      <HBox prefHeight="93.0" prefWidth="600.0" />
+      <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="700.0" spacing="7.0">
+         <children>
+            <Region prefHeight="93.0" prefWidth="25.0" />
+            <ComboBox fx:id="brands" onAction="#onSelectBrandSetAcion" prefWidth="150.0" />
+            <Region prefHeight="93.0" prefWidth="11.0" />
+            <ComboBox fx:id="types" onAction="#onSelectTypeSetAcion" prefWidth="150.0" />
+            <Region prefHeight="76.0" prefWidth="35.0" />
+            <RadioButton fx:id="rented" mnemonicParsing="false" onAction="#onSelectRentedSetAcion" text="Rented" />
+            <Region prefHeight="93.0" prefWidth="10.0" />
+            <RadioButton fx:id="forRent" mnemonicParsing="false" onAction="#onSelectForRentSetAcion" text="For Rent" />
+            <Region prefHeight="93.0" prefWidth="8.0" />
+            <RadioButton fx:id="showAll" mnemonicParsing="false" onAction="#onSelectShowAllSetAcion" text="Show All" />
+         </children></HBox>
         <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #99bbc7;" VBox.vgrow="ALWAYS">
          <content>
             <VBox fx:id="carsPane" minHeight="300.0" minWidth="200.0" />

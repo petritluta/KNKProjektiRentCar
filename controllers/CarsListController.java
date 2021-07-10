@@ -2,10 +2,16 @@ package controllers;
 
 import components.CarCardComponent;
 import components.PageBtnComponent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -31,18 +37,23 @@ public class CarsListController extends ChildController {
     @FXML
     private HBox btnPane;
 
+    @FXML
+    private ComboBox<String> brands ;
+    @FXML
+    private ComboBox<String> types ;
+    @FXML
+    private RadioButton rented;
+    @FXML
+    private RadioButton forRent;
+    @FXML
+    private RadioButton showAll;
+    private ToggleGroup group = new ToggleGroup();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
 //            super.initialize(location, resources);
-//            paginationComponent = new PaginationComponent(userCount(), PAGE_SIZE);
-//            paginationComponent.render(paginationPane, (page) -> {
-//                try {
-//                    showUsers(page);
-//                } catch (Exception e) {
-//                    ErrorPopupComponent.show(e);
-//                }
-//            });
+              setComboBoxesAndRadio();
+
             paginationComponent = new PageBtnComponent(carCount(), PAGE_SIZE);
             paginationComponent.render(btnPane, page -> {
                 try {
@@ -56,6 +67,18 @@ public class CarsListController extends ChildController {
         } catch (Exception e) {
             ErrorPopupComponent.show(e);
         }
+    }
+    private void setComboBoxesAndRadio(){
+        brands.getItems().addAll("Audi", "BMW",
+                "Mercedes");
+        brands.setValue("BMW");
+        types.getItems().addAll("Sedan", "SUV","Cabriolet",
+                "Sports Car");
+        types.setValue("Sedan");
+        rented.setToggleGroup(group);
+        forRent.setToggleGroup(group);
+        showAll.setToggleGroup(group);
+        showAll.setSelected(true);
     }
 
     private int carCount() throws Exception {
@@ -71,6 +94,15 @@ public class CarsListController extends ChildController {
         }
 
     }
+    private void showCars(String queryString) throws Exception {
+        carsPane.getChildren().clear();
+        List<Car> cars = CarRepo.getSelectedCars(queryString);
+        for (Car car : cars) {
+            Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car));
+            carsPane.getChildren().add(carCard);
+        }
+    }
+
 
     private void removeCar(Car car) {
         try {
@@ -81,6 +113,7 @@ public class CarsListController extends ChildController {
             ErrorPopupComponent.show(e);
         }
     }
+
 
     private void showCar(Car car) {
         try {
@@ -96,6 +129,102 @@ public class CarsListController extends ChildController {
             ErrorPopupComponent.show(e);
         }
     }
+    @FXML
+    private void onSelectBrandSetAcion(ActionEvent ev) throws Exception{
+        String brand = brands.getValue();
+        String type = types.getValue();
+        String radBtnString = rented.isSelected() ? "rented" : (forRent.isSelected() ? "forRent" : "showAll" );
+        String queryString = CarRepo.getQuery(brand,type,radBtnString);
+        List<Car> cars = CarRepo.getSelectedCars(queryString);
+
+        paginationComponent = new PageBtnComponent(CarRepo.getAffectedRows(queryString), PAGE_SIZE);
+        paginationComponent.render(btnPane, qs -> {
+            try {
+                showCars(qs);
+            }catch (Exception ex){
+                ErrorPopupComponent.show(ex);
+            }
+        });
+//            System.out.println("erdhh");
+        showCars(queryString);
+    }
+    @FXML
+    private void onSelectTypeSetAcion(ActionEvent ev) throws Exception{
+        String brand = brands.getValue();
+        String type = types.getValue();
+        String radBtnString = rented.isSelected() ? "rented" : (forRent.isSelected() ? "forRent" : "showAll" );
+        String queryString = CarRepo.getQuery(brand,type,radBtnString);
+        List<Car> cars = CarRepo.getSelectedCars(queryString);
+
+        paginationComponent = new PageBtnComponent(CarRepo.getAffectedRows(queryString), PAGE_SIZE);
+        paginationComponent.render(btnPane, qs -> {
+            try {
+                showCars(qs);
+            }catch (Exception ex){
+                ErrorPopupComponent.show(ex);
+            }
+        });
+//            System.out.println("erdhh");
+        showCars(queryString);
+    }
+    @FXML
+    private void onSelectForRentSetAcion(ActionEvent ev) throws Exception{
+        String brand = brands.getValue();
+        String type = types.getValue();
+        String radBtnString = rented.isSelected() ? "rented" : (forRent.isSelected() ? "forRent" : "showAll" );
+        String queryString = CarRepo.getQuery(brand,type,radBtnString);
+        List<Car> cars = CarRepo.getSelectedCars(queryString);
+
+        paginationComponent = new PageBtnComponent(CarRepo.getAffectedRows(queryString), PAGE_SIZE);
+        paginationComponent.render(btnPane, qs -> {
+            try {
+                showCars(qs);
+            }catch (Exception ex){
+                ErrorPopupComponent.show(ex);
+            }
+        });
+//            System.out.println("erdhh");
+        showCars(queryString);
+    }
+    @FXML
+    private void onSelectRentedSetAcion(ActionEvent ev) throws Exception{
+        String brand = brands.getValue();
+        String type = types.getValue();
+        String radBtnString = rented.isSelected() ? "rented" : (forRent.isSelected() ? "forRent" : "showAll" );
+        String queryString = CarRepo.getQuery(brand,type,radBtnString);
+        List<Car> cars = CarRepo.getSelectedCars(queryString);
+
+        paginationComponent = new PageBtnComponent(CarRepo.getAffectedRows(queryString), PAGE_SIZE);
+        paginationComponent.render(btnPane, qs -> {
+            try {
+                showCars(qs);
+            }catch (Exception ex){
+                ErrorPopupComponent.show(ex);
+            }
+        });
+//            System.out.println("erdhh");
+        showCars(queryString);
+    }
+    @FXML
+    private void onSelectShowAllSetAcion(ActionEvent ev) throws Exception{
+        String brand = brands.getValue();
+        String type = types.getValue();
+        String radBtnString = rented.isSelected() ? "rented" : (forRent.isSelected() ? "forRent" : "showAll" );
+        String queryString = CarRepo.getQuery(brand,type,radBtnString);
+        List<Car> cars = CarRepo.getSelectedCars(queryString);
+
+        paginationComponent = new PageBtnComponent(CarRepo.getAffectedRows(queryString), PAGE_SIZE);
+        paginationComponent.render(btnPane, qs -> {
+            try {
+                showCars(qs);
+            }catch (Exception ex){
+                ErrorPopupComponent.show(ex);
+            }
+        });
+//            System.out.println("erdhh");
+        showCars(queryString);
+    }
+
 
 
     @Override

@@ -10,6 +10,7 @@ import models.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +37,43 @@ public class CarRepo {
         return list;
     }
 
+    public static List<Car> getSelectedCars(String query) throws Exception {
+        ArrayList<Car> list = new ArrayList<>();
+
+        Connection conn = DbHelper.getConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet res = stmt.executeQuery(query);
+        int countAffectedRows=0;
+        while (res.next()) {
+            list.add(parseRes(res));
+            countAffectedRows++;
+        }
+        return list;
+    }
+
+    public static int getAffectedRows(String queryString) throws Exception {
+        Connection conn = DbHelper.getConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet res = stmt.executeQuery(queryString);
+        int countAffectedRows=0;
+        while (res.next()) {
+            countAffectedRows++;
+        }
+        return countAffectedRows;
+    }
+    public static String getQuery (String brand, String type, String radBtnString){
+        String query = null;
+        switch (radBtnString){
+            case "showAll" : query = "select car.id,publisher,manufacture,model,price_per_day,avg_fuel_km,transmission,speed_limit,type,seat_num,door_num,inserted_at,updated_at,car_img from car,manufacture where car.manufacture=manufacture.id and manufacture.name= \"" + brand+"\" and car.type = \""+type+"\"";
+                break;
+            case "rented": query = "select car.id,publisher,manufacture,model,price_per_day,avg_fuel_km,transmission,speed_limit,type,seat_num,door_num,inserted_at,updated_at,car_img from car,manufacture where car.manufacture=manufacture.id and manufacture.name= \""+brand+"\" and car.type= \""+type+"\" and car.id in (" +
+                    "select distinct rentedcar.car from rentedcar)";
+                break;
+            case "forRent": query = "select car.id,publisher,manufacture,model,price_per_day,avg_fuel_km,transmission,speed_limit,type,seat_num,door_num,inserted_at,updated_at,car_img from car,manufacture where car.manufacture=manufacture.id and manufacture.name= \""+brand+"\" and car.type= \""+type+"\" and car.id not in (" +
+                    "select distinct rentedcar.car from rentedcar)";
+        }
+        return query;
+    }
     public static Car find(int id) throws Exception {
         Connection conn = DbHelper.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM car WHERE id = ? LIMIT 1");
