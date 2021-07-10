@@ -116,7 +116,9 @@ public class CarsDetailsController extends ChildController {
         typeField.setDisable(!isEditable);
         speedlimitField.setDisable(!isEditable);
         avgfuelField.setDisable(!isEditable);
-//        saveButton.setDisable(true);
+
+        saveButton.setDisable(!editable);
+
         if (isEditable) {
             imgField.setOnMouseClicked(e -> this.onImageClick());
         } else {
