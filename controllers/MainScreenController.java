@@ -37,8 +37,7 @@ public class MainScreenController extends BaseController {
 
     @FXML
     private Button navCarsButton;
-    @FXML
-    private Button navEmployersButton;
+
     @FXML
     private Button navLogoutButton;
     @FXML
@@ -53,27 +52,17 @@ public class MainScreenController extends BaseController {
     private CheckMenuItem alCheckMenuItem;
     @FXML
     private MenuItem userMenuItem;
-    @FXML
-    private CheckMenuItem enMenuItem;
-    @FXML
-    private CheckMenuItem alMenuItem;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        super.initialize(location, resources);
+        super.initialize(location, resources);
 
-//        boolean enSelected = AppConfig.get().getLanguage() == LangEnum.EN;
-//        enCheckMenuItem.setSelected(enSelected);
-//        alCheckMenuItem.setSelected(!enSelected);
-//
-//        // check role access
-//        if (SessionManager.user.getRole() == UserRole.Employee) {
-//            ((Pane) navUsersButton.getParent()).getChildren().remove(navUsersButton);
-//            userMenuItem.getParentMenu().getItems().remove(userMenuItem);
-//            userMenuItem.setOnAction(null);
-//        }
-//    }
+        boolean enSelected = AppConfig.get().getLanguage() == LangEnum.EN;
+        enCheckMenuItem.setSelected(enSelected);
+        alCheckMenuItem.setSelected(!enSelected);
+
 
         String statusText = "User %s logged in at %s";
         String userr = SessionManager.employer.getFirst_name();
@@ -81,6 +70,8 @@ public class MainScreenController extends BaseController {
         statusLabel.setText(String.format(statusText, userr, lastLoginn));
 
     }
+
+
     public void setView(String view) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(this.viewPath(view)));
@@ -157,15 +148,16 @@ public class MainScreenController extends BaseController {
 
     @FXML
     public void onAlMenuItemClick(ActionEvent ev) {
-        enMenuItem.setSelected(false);
-        alMenuItem.setSelected(true);
+        enCheckMenuItem.setSelected(false);
+        alCheckMenuItem.setSelected(true);
+
         updateLanguage();
     }
 
     @FXML
     public void onEnMenuItemClick(ActionEvent ev) {
-        enMenuItem.setSelected(true);
-        alMenuItem.setSelected(false);
+        enCheckMenuItem.setSelected(true);
+        alCheckMenuItem.setSelected(false);
         updateLanguage();
     }
 
@@ -187,7 +179,7 @@ public class MainScreenController extends BaseController {
 
     private void updateLanguage() {
         try {
-            LangEnum lang = enMenuItem.isSelected() ? LangEnum.EN : LangEnum.AL;
+            LangEnum lang = enCheckMenuItem.isSelected() ? LangEnum.EN : LangEnum.AL;
             AppConfig conf = AppConfig.get();
             conf.setLanguage(lang);
             ResourceBundle bundle = getLangBundle();
@@ -207,7 +199,7 @@ public class MainScreenController extends BaseController {
         String loginTime = DateHelper.toSqlFormat(SessionManager.lastLogin);
         statusLabel.setText(String.format(statusLabelTxt, employer, loginTime));
         navCarsButton.setText(navCarsTxt);
-        navEmployersButton.setText(navEmployersTxt);
+//        navEmployersButton.setText(navEmployersTxt);
         navLogoutButton.setText(navLogoutTxt);
 
         if (childController != null)

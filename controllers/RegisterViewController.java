@@ -5,11 +5,14 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Utils.Authenticate;
 import Utils.DbHelper;
+import Utils.Notification;
 import Utils.Security;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,25 +81,25 @@ public class RegisterViewController implements Initializable {
                 try {
                     String emailF = emailfield.getText();
                     String passwordF = passwordfield.getText();
-                    String salt = Security.generateSalt();
-                    String hashedPwd = Security.hashPassword(passwordF, salt);
-                    User user = new User(emailF, passwordF);
-
                     String firstNamee = firstName.getText();
                     String lastNamee = lastName.getText();
+                    User user = new User(firstNamee, lastNamee,emailF,passwordF);
 
-                    if (!UserRepo.findemail(emailF)) {
-                        user.setFirst_name(firstNamee);
-                        user.setLast_name(lastNamee);
-                        user.setPassword(hashedPwd);
-                        user.setSalt(salt);
-                        user = UserRepo.create(user);
+
+                    if (Authenticate.register(user)!=null) {
+
                         created.setTextFill(Color.GREEN);
                         created.setText("Your account has been created successfully");
 
                     } else {
+                        String errStr="";
+                        ArrayList<Notification> errors=Authenticate.getNotifications();
+                        for (int i = 0; i < errors.size(); i++) {
+                            errStr+="* "+errors.get(i).getMsg();
+                        }
+                        Authenticate.clearNotificaitons();
                         created.setTextFill(Color.RED);
-                        created.setText("   This email is already being used");
+                        created.setText(errStr);
                     }
 
                 } catch (Exception ex) {

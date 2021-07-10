@@ -54,10 +54,8 @@ public class CarRepo {
         ArrayList<Car> list = new ArrayList<>();
 
         Connection conn = DbHelper.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("select * from car c" +
-                                                            "where c.id in (select r.id from rentedcar r" +
-                                                                            "where end_date < NOW())" +
-                                                            "ORDER BY c.id ASC LIMIT ? OFFSET ?");
+        //SELECT * FROM rentedcar INNER JOIN car as c ON rentedcar.car = c.id WHERE rentedcar.end_date < NOW ORDER BY c.id ASC
+        PreparedStatement stmt = conn.prepareStatement("SELECT car.* FROM car INNER JOIN rentedcar ON rentedcar.car = car.id WHERE rentedcar.end_date < NOW() ORDER BY car.id ASC  LIMIT ? OFFSET ?");
         stmt.setInt(1, pageSize);
         stmt.setInt(2, pageSize * page);
         ResultSet res = stmt.executeQuery();

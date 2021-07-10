@@ -2,8 +2,12 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import Utils.Authenticate;
+import Utils.Notification;
 import Utils.Security;
 import Utils.SessionManager;
 import components.ErrorPopupComponent;
@@ -41,30 +45,37 @@ public class LoginViewController extends BaseController{
                 User user = null;
                 String emailF = usernanme.getText();
                 String passwordF = password.getText();
+                user=Authenticate.login(emailF,passwordF);
+                if(user!=null)
+                {
+                    SessionManager.employer = user;
+                    SessionManager.lastLogin = new Date();
 
-                if(hasUsers()) {
-                    user = login(emailF, passwordF);
+
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
+
+                    Parent parent = loader.load();
+                    MainScreenController controller = loader.getController();
+                    controller.setView(MainScreenController.CARS_LIST_VIEW);
+
+                    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(parent);
+                    primaryStage.setScene(scene);
+                    primaryStage.setResizable(false);
                 }
-                else {
-                    //me qit exception qe me dal te regjistrimi
+                else{
+                    String errStr="";
+                    ArrayList<Notification> errors=Authenticate.getNotifications();
+                    for (int i = 0; i < errors.size(); i++) {
+                        errStr+="* "+errors.get(i).getMsg();
+                    }
+                    Authenticate.clearNotificaitons();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(errStr);
+                    alert.showAndWait();
                 }
 
-                if (user == null) throw new Exception("Invalid credentials");
-                SessionManager.employer = user;
-                SessionManager.lastLogin = new Date();
-
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
-
-                Parent parent = loader.load();
-                MainScreenController controller = loader.getController();
-                controller.setView(MainScreenController.CARS_LIST_VIEW);
-
-                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(parent);
-                primaryStage.setScene(scene);
-                primaryStage.setResizable(false);
 
             } catch (Exception ex) {
                 ex.printStackTrace();
