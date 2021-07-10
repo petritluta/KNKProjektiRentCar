@@ -57,6 +57,8 @@ public class MainScreenController extends BaseController {
     private CheckMenuItem enMenuItem;
     @FXML
     private CheckMenuItem alMenuItem;
+    @FXML
+    private MenuItem exitmenu;
 
 
     @Override
@@ -242,4 +244,12 @@ public class MainScreenController extends BaseController {
             primaryStage.show();
         }
     }
-}
+    @FXML
+    public void exitfield(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Exit");
+        alert.setContentText("Are you sure you want to leave ?");
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            System.exit(0);
+        }
+    }}
