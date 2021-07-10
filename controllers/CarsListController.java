@@ -69,7 +69,6 @@ public class CarsListController extends ChildController {
             Node carCard = new CarCardComponent().getContent(car,e->showCar(car),e->removeCar(car));
             carsPane.getChildren().add(carCard);
         }
-
     }
 
     private void removeCar(Car car) {
@@ -90,6 +89,7 @@ public class CarsListController extends ChildController {
             Pane pane = loader.load();
             CarsDetailsController controller = loader.getController();
             controller.setModel(car);
+            controller.setEditable(true);
 
             parentController.setView(MainScreenController.CARS_DETAILS_VIEW, pane, controller);
         } catch (Exception e) {

@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 //import components.AboutComponent;
 import components.ErrorPopupComponent;
 import javafx.stage.StageStyle;
+import models.Car;
 import models.LangEnum;
 import models.User;
 import Utils.AppConfig;
@@ -135,7 +136,14 @@ public class MainScreenController extends BaseController {
     @FXML
     public void onInsertCarClick(ActionEvent ev) {
         try {
-            this.setView(CARS_DETAILS_VIEW);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/cars-details.fxml"));
+            Pane pane = loader.load();
+            CarsDetailsController controller = loader.getController();
+            controller.setModel(new Car());
+            controller.setEditable(true);
+
+            this.setView(CARS_DETAILS_VIEW, pane, controller);
         } catch (Exception ex) {
             ErrorPopupComponent.show(ex);
             ex.printStackTrace();
