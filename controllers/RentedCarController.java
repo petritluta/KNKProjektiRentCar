@@ -1,5 +1,7 @@
 package controllers;
 import Utils.DbHelper;
+import Utils.Utils;
+import components.ErrorPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +36,8 @@ public class RentedCarController extends ChildController {
     @FXML
     private ComboBox<String> payment;
     private Car car;
+    @FXML
+    private Button rentButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,10 +51,21 @@ public class RentedCarController extends ChildController {
         this.carfield.setText(Integer.toString(car.getId()));
         this.car=car;
         this.carfield.setDisable(true);
+        this.totalprice.setDisable(true);
     }
+    @FXML
+    private void onCancelButtonClick(ActionEvent event) {
+        try {
+            parentController.setView(MainScreenController.CARS_LIST_VIEW);
+        } catch (Exception e) {
+            ErrorPopupComponent.show(e);
+        }
+    }
+
 
     @FXML
     public void rentCar() throws Exception {
+        rentButton.setDisable(true);
         Connection conn= DbHelper.getConnection();
         int carId=Integer.parseInt(this.carfield.getText());
         String personId=this.personfield.getText();
@@ -58,7 +73,6 @@ public class RentedCarController extends ChildController {
         Date end_date=Date.valueOf(this.enddate.getValue());
         Double total_price=Double.parseDouble(this.totalprice.getText());
         String payment_type=this.payment.getValue();
-
         PreparedStatement stmt=conn.prepareStatement("INSERT INTO rentedcar(car,person_id,start_date,end_date,total_price,payment_method) VALUES (?,?,?,?,?,?)");
         stmt.setInt(1,carId);
         stmt.setString(2,personId);
@@ -71,28 +85,35 @@ public class RentedCarController extends ChildController {
         parentController.setView(MainScreenController.CARS_LIST_VIEW);
     }
 
-
-
-
+public void disableButton(){
+    String personId=this.personfield.getText();
+if(personId.length()!=10 || personId.contains("[a-zA-Z]+"))
+{
+    rentButton.setDisable(true);
+}
+else{
+    rentButton.setDisable(false);
+}
+}
     public void insertEndDate()
     {
-
-        if(this.startdate.getValue()!=null  && this.enddate.getValue()!=null )
+        String personId=this.personfield.getText();
+        if(this.startdate.getValue()!=null  && this.enddate.getValue()!=null && personId.length()==10 && !personId.contains("[a-zA-Z]+"))
         {
             long daysBetween= ChronoUnit.DAYS.between(this.startdate.getValue(),this.enddate.getValue());
-            if(daysBetween > 0)
+            if(daysBetween > 0){
+                rentButton.setDisable(false);
                 this.totalprice.setText(Double.toString(daysBetween*this.car.getPrice_per_day()));
-            else
+            }
+            else{
+                rentButton.setDisable(true);
                 this.totalprice.setText(Double.toString(0));
-
+            }
         }
         else{
+            rentButton.setDisable(true);
             this.totalprice.setText(Double.toString(0));
+
         }
     }
-
-
-
-
-
 }

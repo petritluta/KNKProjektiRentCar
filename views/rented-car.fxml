@@ -60,13 +60,13 @@
                     </font>
                 </Label>
                 <TextField fx:id="carfield" prefHeight="30.0" GridPane.columnIndex="1" />
-                <TextField fx:id="personfield" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="personfield" onKeyTyped="#disableButton" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="totalprice" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <DatePicker fx:id="startdate" onMouseExited="#insertEndDate" prefHeight="30.0" editable="false"   GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <DatePicker fx:id="enddate" onMouseExited="#insertEndDate" editable="false" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <DatePicker fx:id="startdate" editable="false" onAction="#insertEndDate" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <DatePicker fx:id="enddate" editable="false" onAction="#insertEndDate" onMouseExited="#insertEndDate" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <ComboBox fx:id="payment" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" text="Rent car" onAction="#rentCar"  GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Button fx:id="rentButton" mnemonicParsing="false" onAction="#rentCar" prefHeight="26.0" prefWidth="99.0" text="Rent car" GridPane.rowIndex="6" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" prefHeight="26.0" prefWidth="92.0" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
