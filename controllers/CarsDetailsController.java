@@ -3,6 +3,7 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -59,6 +60,9 @@ public class CarsDetailsController extends ChildController {
     private TextField doornumField;
 
     @FXML
+    private Button saveButton;
+
+    @FXML
     private TextField typeField;
     @FXML
     private TextField speedlimitField;
@@ -112,7 +116,7 @@ public class CarsDetailsController extends ChildController {
         typeField.setDisable(!isEditable);
         speedlimitField.setDisable(!isEditable);
         avgfuelField.setDisable(!isEditable);
-        saveButton.setDisable(true);
+//        saveButton.setDisable(true);
         if (isEditable) {
             imgField.setOnMouseClicked(e -> this.onImageClick());
         } else {
