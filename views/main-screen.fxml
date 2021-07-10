@@ -41,10 +41,6 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Logout">
-                                    <accelerator>
-                                        <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-                                    </accelerator></MenuItem>
                                 <MenuItem mnemonicParsing="false" text="Exit">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
