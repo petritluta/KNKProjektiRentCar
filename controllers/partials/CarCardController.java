@@ -57,7 +57,7 @@ public class CarCardController implements Initializable {
         speedlimit.setText("speed limit: " + car.getSpeed_limit());
         avg_fuel_km.setText("Fuel consumption: "+(int)car.getAvg_fuel_km());
         price_per_day.setText("Price per day: "+(int)car.getPrice_per_day());
-        Image image=new Image(getClass().getResource("../../"+car.getCar_img()).toURI().toString());
+        Image image = new Image(getClass().getResource("../../"+car.getCar_img()).toURI().toString());
         img.setImage(image);
 
         }catch(Exception ex){

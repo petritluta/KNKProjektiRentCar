@@ -6,7 +6,6 @@ import Utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,14 +14,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 //import components.AboutComponent;
 import components.ErrorPopupComponent;
+import javafx.stage.StageStyle;
+import models.Car;
 import models.LangEnum;
-import models.User;
-import Utils.AppConfig;
-import Utils.DateHelper;
-import Utils.SessionManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,9 +30,8 @@ public class MainScreenController extends BaseController {
     public static final String CARS_DETAILS_VIEW = "cars-details";
     public static final String CARS_LIST_VIEW = "cars-list";
     public static final String BUYERS_DETAILS_VIEW = "buyers-details";
-    public static final String BUYERS_LIST_VIEW = "buyers-list";
+    public static final String EXPIRED_LIST = "expired-list";
     public static final String VIEW_PATH = "../views";
-
     private ChildController childController = null;
     private String activeView = "";
 
@@ -103,7 +100,7 @@ public class MainScreenController extends BaseController {
             case BUYERS_DETAILS_VIEW:
                 contentPage.setAlignment(Pos.TOP_CENTER);
                 break;
-            case BUYERS_LIST_VIEW:
+            case EXPIRED_LIST:
                 contentPage.setAlignment(Pos.TOP_CENTER);
                 break;
             default:
@@ -132,9 +129,26 @@ public class MainScreenController extends BaseController {
     }
 
     @FXML
+    public void onExpiredBtnClick(ActionEvent ev) {
+        try {
+            this.setView(EXPIRED_LIST);
+        } catch (Exception ex) {
+            ErrorPopupComponent.show(ex);
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
     public void onInsertCarClick(ActionEvent ev) {
         try {
-            this.setView(CARS_DETAILS_VIEW);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/cars-details.fxml"));
+            Pane pane = loader.load();
+            CarsDetailsController controller = loader.getController();
+            controller.setModel(new Car());
+            controller.setEditable(true);
+
+            this.setView(CARS_DETAILS_VIEW, pane, controller);
         } catch (Exception ex) {
             ErrorPopupComponent.show(ex);
             ex.printStackTrace();
@@ -153,6 +167,22 @@ public class MainScreenController extends BaseController {
         enMenuItem.setSelected(true);
         alMenuItem.setSelected(false);
         updateLanguage();
+    }
+
+    @FXML
+    public void help(ActionEvent ev) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/partials/help.fxml"));
+
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("HELP");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.showAndWait();
     }
 
     private void updateLanguage() {
@@ -193,7 +223,7 @@ public class MainScreenController extends BaseController {
             case BUYERS_DETAILS_VIEW:
                 sectionLabel.setText(langBundle.getString("main_nav_section_employers_details"));
                 break;
-            case BUYERS_LIST_VIEW:
+            case EXPIRED_LIST:
                 sectionLabel.setText(langBundle.getString("main_nav_section_employers_list"));
                 break;
         }

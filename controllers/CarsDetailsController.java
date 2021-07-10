@@ -229,7 +229,7 @@ private void onImageClick() {
         if (srcFile != null) {
             FileHelper fh = FileHelper.get();
             String filename = new Date().getTime() + (int) (Math.random() * 100) + "." + fh.fileExt(srcFile);
-            File destFile = new File(fh.getImageDir() + "/" + filename);
+            File destFile = new File(fh.getImageDir() + "\\" + filename);
             fh.copyFile(srcFile, destFile);
 
             Image image = new Image(destFile.toURI().toString());
