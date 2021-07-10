@@ -6,7 +6,6 @@ import Utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,10 +21,6 @@ import components.ErrorPopupComponent;
 import javafx.stage.StageStyle;
 import models.Car;
 import models.LangEnum;
-import models.User;
-import Utils.AppConfig;
-import Utils.DateHelper;
-import Utils.SessionManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +30,7 @@ public class MainScreenController extends BaseController {
     public static final String CARS_DETAILS_VIEW = "cars-details";
     public static final String CARS_LIST_VIEW = "cars-list";
     public static final String BUYERS_DETAILS_VIEW = "buyers-details";
-    public static final String BUYERS_LIST_VIEW = "buyers-list";
+    public static final String EXPIRED_LIST = "expired-list";
     public static final String VIEW_PATH = "../views";
     private ChildController childController = null;
     private String activeView = "";
@@ -105,7 +100,7 @@ public class MainScreenController extends BaseController {
             case BUYERS_DETAILS_VIEW:
                 contentPage.setAlignment(Pos.TOP_CENTER);
                 break;
-            case BUYERS_LIST_VIEW:
+            case EXPIRED_LIST:
                 contentPage.setAlignment(Pos.TOP_CENTER);
                 break;
             default:
@@ -127,6 +122,16 @@ public class MainScreenController extends BaseController {
     public void onCarsBtnClick(ActionEvent ev) {
         try {
             this.setView(CARS_LIST_VIEW);
+        } catch (Exception ex) {
+            ErrorPopupComponent.show(ex);
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onExpiredBtnClick(ActionEvent ev) {
+        try {
+            this.setView(EXPIRED_LIST);
         } catch (Exception ex) {
             ErrorPopupComponent.show(ex);
             ex.printStackTrace();
@@ -218,7 +223,7 @@ public class MainScreenController extends BaseController {
             case BUYERS_DETAILS_VIEW:
                 sectionLabel.setText(langBundle.getString("main_nav_section_employers_details"));
                 break;
-            case BUYERS_LIST_VIEW:
+            case EXPIRED_LIST:
                 sectionLabel.setText(langBundle.getString("main_nav_section_employers_list"));
                 break;
         }

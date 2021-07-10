@@ -36,6 +36,23 @@ public class CarRepo {
         return list;
     }
 
+    public static List<Car> getExpired(int pageSize, int page) throws Exception {
+        ArrayList<Car> list = new ArrayList<>();
+
+        Connection conn = DbHelper.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("select * from car c" +
+                                                            "where c.id in (select r.id from rentedcar r" +
+                                                                            "where end_date < NOW())" +
+                                                            "ORDER BY c.id ASC LIMIT ? OFFSET ?");
+        stmt.setInt(1, pageSize);
+        stmt.setInt(2, pageSize * page);
+        ResultSet res = stmt.executeQuery();
+        while (res.next()) {
+            list.add(parseRes(res));
+        }
+        return list;
+    }
+
     public static Car find(int id) throws Exception {
         Connection conn = DbHelper.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM car WHERE id = ? LIMIT 1");
